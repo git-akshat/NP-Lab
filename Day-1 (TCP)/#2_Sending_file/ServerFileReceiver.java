@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 import java.net.*;
-import java.net.ServerSocket;
 
 class ServerDemo{
 
@@ -18,18 +17,20 @@ class ServerDemo{
 			
 			while( (inpt = br.readLine()) != null)
 			{
-				msg = msg + "\n" + inpt;
+				msg = msg + inpt + "\n";
 			}
 			
 			byte[] data = msg.getBytes();
 			
 			
-			try{
-			FileOutputStream fos = new FileOutputStream("Output.txt");	
+			try
+			{
+				FileOutputStream fos = new FileOutputStream("Output.txt");	
 				fos.write(data);
-				
 				System.out.println("File received successfully");
-			} catch (FileNotFoundException e) {
+			}
+			catch (FileNotFoundException e)
+			{
 				System.out.println("File not found");
 			}
 

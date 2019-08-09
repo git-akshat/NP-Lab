@@ -5,9 +5,8 @@ import java.net.*;
 
 class ClientDemo{
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
-	try{
 		Socket sock = new Socket("127.0.0.1",4000);
 		System.out.println("Connection established");
 		
@@ -23,10 +22,5 @@ class ClientDemo{
 		br.close();
 		sock.close();
 		
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error occured");
-		}
 	}
 }
