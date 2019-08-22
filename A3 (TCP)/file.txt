@@ -1,0 +1,4 @@
+1. Go 5km North
+2. Turn to left and continue 3 km.
+3. turn to left and walk straight 2km.
+4. which direction you are pointing to?
