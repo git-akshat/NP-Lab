@@ -23,11 +23,10 @@ int main()
         fd = open(myfifo, O_WRONLY); 
         
         // enter your message
-        printf("You : ");
+        printf("You  : ");
         fgets(arr2, 80, stdin);
   
-        // Write the input arr2 on FIFO 
-        // and close it 
+        // Write the input arr2 on FIFO and close it 
         write(fd, arr2, strlen(arr2)+1); 
         close(fd); 
   

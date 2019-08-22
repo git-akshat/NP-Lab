@@ -30,7 +30,8 @@ int main()
         // Now open in write mode and write 
         // string taken from user. 
         fd1 = open(myfifo,O_WRONLY);
-        printf("You : "); 
+        
+        printf("You  : "); 
         fgets(str2, 80, stdin); 
         write(fd1, str2, strlen(str2)+1); 
         close(fd1); 
