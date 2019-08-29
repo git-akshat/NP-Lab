@@ -16,7 +16,8 @@ int main()
     char buffer[1024], fname[50];
     struct sockaddr_in addr;
 
-    /*  socket creates an endpoint for communication and returns a file descriptor */
+    /* socket creates an endpoint for communication */
+    /* sockfd = socket(domain, type, protocol) */ 
     soc = socket(AF_INET, SOCK_STREAM, 0);
 
     /* sockaddr_in is used for ip manipulation
