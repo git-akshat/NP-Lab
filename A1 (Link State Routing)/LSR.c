@@ -39,18 +39,19 @@ void initialize()
 /* Get Minimum Node Not In Network */
 int GetMin()
 {
-    int min = -1;
-    distance[min] = 999;
+    int minIdx = -1;
+    int minDist = INFINITY;
 
     int i;
     for(i=0; i<n; i++)
     {
-        if( !visited[i] && distance[min] > distance[i] )
+        if( !visited[i] && minDist >= distance[i] )
         {
-                min=i;
+                minIdx = i;
+                minDist = distance[i];
         }
     }
-    return min;
+    return minIdx;
 }
 
 /* update distance for adjacent nodes */
@@ -113,7 +114,7 @@ int main()
 
     initialize(); 
 
-    for(i=0; i<n; i++) 
+    for(i=0; i<n-1; i++) // for all remaining vertices(since source is aready visited)
     {
         node = GetMin();
         visited[node] = 1;
