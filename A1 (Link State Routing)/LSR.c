@@ -1,6 +1,6 @@
 /***********************************************************
 * For the given network graph, write a program to implement
-* Link state routing algorithm 
+* Link state routing algorithm
 * to build a routing table for the given node.
 ************************************************************/
 
@@ -21,12 +21,12 @@ int n; // number of nodes
 void initialize()
 {
     int i;
-    visited[source] = 1; 
-    parent[source] = source; 
+    visited[source] = 1;
+    parent[source] = source;
 
     for(i=0; i<n; i++)
     {
-        if( cost[source][i] == INFINITY ) 
+        if( cost[source][i] == INFINITY )
             distance[i] = INFINITY;
         else
         {
@@ -62,7 +62,7 @@ void updateTable(int node)
     {
         if( cost[node][i] != INFINITY )
         {
-            if(distance[i] > distance[node]+cost[node][i] ) 
+            if(distance[i] > distance[node]+cost[node][i] )
             {
                 distance[i] = distance[node]+cost[node][i];
                 parent[i] = node;
@@ -75,7 +75,7 @@ void display()
 {
     int i;
     int node;
-    
+
     printf("\nNode \t Distance from source \t Path \n");
     for(i=0; i<n; i++)
     {
@@ -110,15 +110,15 @@ int main()
         {
             scanf("%d", &cost[i][j]);
         }
-    }    
+    }
 
-    initialize(); 
+    initialize();
 
-    for(i=0; i<n-1; i++) // for all remaining vertices(since source is aready visited)
+    for(i=0; i<n-1; i++) // for all remaining vertices(since source is already visited)
     {
         node = GetMin();
         visited[node] = 1;
-        updateTable(node);   
+        updateTable(node);
     }
 
     display();
