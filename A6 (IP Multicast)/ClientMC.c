@@ -1,7 +1,7 @@
 /************************************************************
 * Write a socket program to demonstrate ip multicasting 
 * which provides the capability for an application to send
-* IP datagram that a group of hosts in anetwork can recieve.
+* IP datagram that a group of hosts in anetwork can receive.
 *************************************************************/
 
 /**** clients recieves the message ****/
@@ -40,7 +40,7 @@ int main()
 	}
 
 	memset(&addr, 0, sizeof(addr));
-	
+
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(1234);
 	addr.sin_addr.s_addr = INADDR_ANY; // INADDR_ANY tells the socket to listen on all available interfaces.
