@@ -1,3 +1,5 @@
+/* Write a program for Error Detection using CRC-CCITT(16 bits). */
+
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
@@ -74,6 +76,7 @@ int main()
 
     crc(recv, gen, rem);
 
+    printf("\nSyndrome = %s ", rem);
     for(i=0; i<strlen(rem); i++)
     {
         if(rem[i] == '1')
@@ -89,14 +92,15 @@ int main()
 CRC-16 Generator : x^16 + x^12 + x^5 + 1
 Binary Form      : 10001000000100001
 
-Enter Dataword   : 100010
+Enter Dataword   : 11110001
 
-Augmented dataword is   : 1000100000000000000000
+Augmented dataword is   : 111100010000000000000000
 
-Final data transmitted  : 1000100000010000100000
+Final data transmitted  : 111100011111111100111110
 
-Enter the data received : 1000100000010000100000
+Enter the data received : 111100011111111100111110
 
+Syndrome = 0000000000000000
 No Error. Data recieved successfully.
 *****************************************************/
 
@@ -105,13 +109,14 @@ No Error. Data recieved successfully.
 CRC-16 Generator : x^16 + x^12 + x^5 + 1
 Binary Form      : 10001000000100001
 
-Enter Dataword   : 1111000
+Enter Dataword   : 10101011
 
-Augmented dataword is   : 11110000000000000000000
+Augmented dataword is   : 101010110000000000000000
 
-Final data transmitted  : 11110001111111110011111
+Final data transmitted  : 101010110000010010000001
 
-Enter the data received : 11110001111111111001110
+Enter the data received : 101010110000000000000000
 
+Syndrome = 0000010010000001
 Error occured !!! Corrupted data received.
 *****************************************************/
