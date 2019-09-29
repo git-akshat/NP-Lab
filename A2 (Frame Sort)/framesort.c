@@ -63,7 +63,7 @@ int main()
     fgets(msg , MAX, stdin);
     msg[strlen(msg)-1] = '\0'; // to remove '\n' from string
 
-    printf("Enter size of the frame : ");  
+    printf("Enter size of the frame : ");
     scanf("%d" , &fsize);
 
     n = strlen(msg) / fsize ;   // find the number of frames
@@ -71,7 +71,7 @@ int main()
     // Divide the message into frames
     for(i=0 ; msg[i] != '\0' ; i++)
     {
-        f[i].id = i; 
+        f[i].id = i;
 
         for(j=0 ; j<fsize && m <= strlen(msg); j++)
         {

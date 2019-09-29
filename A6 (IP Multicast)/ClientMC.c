@@ -53,7 +53,7 @@ int main()
 	}
 
 	group.imr_multiaddr.s_addr = inet_addr("226.1.1.1");
-	group.imr_interface.s_addr = INADDR_ANY; // group.imr_interface.s_addr = inet_addr("your system ip address")
+	group.imr_interface.s_addr = INADDR_ANY; 
 	if(setsockopt(sockfd, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&group, sizeof(group)) < 0)
 	{
 		printf("Adding multicast group error");

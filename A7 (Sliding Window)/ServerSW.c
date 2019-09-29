@@ -18,7 +18,7 @@
 
 int main() 
 { 
-	int server_fd, soc; 
+	int server_fd, sock; 
 	char frame[MAX];
 	char res[MAX]; // to store all bytes that are recieved successfully
 	struct sockaddr_in addr;
@@ -44,7 +44,7 @@ int main()
 
 	/* accept a connection, we get a file descriptor */
 	/* new_socket = accept(int fd, addr, addrlen) */
-	soc = accept(server_fd, NULL, NULL);
+	sock = accept(server_fd, NULL, NULL);
 
 	int i=0;
 	int k=0; // iterator for res[MAX]
@@ -58,7 +58,7 @@ int main()
 		memset(frame, 0, MAX); // re-initialise frame buffer with 0
 
 		// recv(socket, buffer, length, flag)
-		recv(soc, frame, recvsize, 0); 
+		recv(sock, frame, recvsize, 0); 
 
 		if(strlen(frame) < recvsize) 
 		{
@@ -79,14 +79,13 @@ int main()
 			{
 				res[k++] = frame[j];
 			}
-			
 			frame[err_idx]='x';
 			printf("\n\nPacket received = %s", frame);
 			printf("\nError at byte   = %d", err_idx+1);
 			printf("\nReceiving window: ");
 			printf("\n start seqno = %d", i);
 			printf("\n end seqno   = %d", i+err_idx);
-			
+
 			i = i + err_idx;
 			ack = i; 
 		}
@@ -97,7 +96,6 @@ int main()
 			{
 				res[k++] = frame[j];
 			}
-
 			printf("\n\nPacket received = %s", frame);
 			printf("\nReceiving window: ");
 			printf("\n start seqno = %d", i);
@@ -108,7 +106,7 @@ int main()
 		}
 
 		printf("\nSending ack = %d", ack);
-		send(soc, &ack, sizeof(ack), 0) ;  
+		send(sock, &ack, sizeof(ack), 0) ;  
 	}
 
 	res[k] = '\0';
@@ -116,6 +114,6 @@ int main()
 	fputs(res, stdout);
 	printf("\n\n");
 
-	close(soc);
+	close(sock);
 	close(server_fd);
 }

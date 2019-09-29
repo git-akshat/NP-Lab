@@ -12,7 +12,7 @@
 
 int main()
 {
-    int server_fd, soc, fd, n;
+    int server_fd, sock, fd, n;
     char buffer[1024], fname[50];
     struct sockaddr_in addr;
 
@@ -38,11 +38,11 @@ int main()
 
     /* accept a connection, we get a file descriptor */
     /* new_socket = accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) */
-    soc = accept(server_fd, NULL, NULL);
+    sock = accept(server_fd, NULL, NULL);
 
     /*  receive the filename */
     /* recv(int socket, const void *buffer, size_t length, int flags); */
-    recv(soc, fname, 50, 0);
+    recv(sock, fname, 50, 0);
     printf("\nRequesting for file: %s\n", fname);
 
     /*  open the file in read-only mode */
@@ -50,13 +50,13 @@ int main()
 
     if (fd < 0)
     {
-        send(soc, "\nFile not found\n", 15, 0);
+        send(sock, "\nFile not found\n", 15, 0);
     }
     else
     {
         while ((n = read(fd, buffer, sizeof(buffer))) > 0)
         {
-            send(soc, buffer, n, 0);
+            send(sock, buffer, n, 0);
         }
     }
     printf("\nFile content sent\n");

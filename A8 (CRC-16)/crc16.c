@@ -27,12 +27,10 @@ void crc(char *data, char *gen, char *rem)
     }
 
     int idx = strlen(out)-strlen(gen)+1;
-
     for(i=0; i<strlen(gen)-1; i++)
     {
         rem[i] = out[idx+i];
     }
-
 }
 
 int main()
@@ -43,6 +41,7 @@ int main()
     char augWord[MAX]; // augmented dataword
     char cword[MAX]; // codeword
     char rem[MAX]; // remainder from crc
+    char recv[MAX]; // received message 
     char gen[] = "10001000000100001";
 
     printf("\nCRC-16 Generator : x^16 + x^12 + x^5 + 1 ");
@@ -64,10 +63,8 @@ int main()
     strcat(cword, rem);
     printf("\n\nFinal data transmitted  : %s", cword);
 
-    char recv[MAX];
     printf("\n\nEnter the data received : ");
     scanf("%s", recv);
-
     if(strlen(recv) < strlen(cword))
     {
         printf("\n Invalid input \n");
@@ -85,7 +82,7 @@ int main()
             exit(0);
         }
     }
-    printf("\nNo Error. Data recieved successfully.\n");
+    printf("\nNo Error. Data received successfully.\n");
 }
 
 /*************** Output -1 *************************
@@ -101,7 +98,7 @@ Final data transmitted  : 111100011111111100111110
 Enter the data received : 111100011111111100111110
 
 Syndrome = 0000000000000000
-No Error. Data recieved successfully.
+No Error. Data received successfully.
 *****************************************************/
 
 
