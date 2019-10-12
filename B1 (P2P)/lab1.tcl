@@ -55,14 +55,15 @@ proc finish {} {
 	set count 0
 	set tf [open lab.tr r]
 	while {[gets $tf line] != -1} {
-		if { [string match "*d*" $line] } {
+		if { [string match "d*" $line] } {
 			set count [expr $count + 1]
 		}
 	}
-	puts "No of packets dropped: $count"
+	puts "Number of packets dropped: $count"
 	exit 0
 }
 
+# schedule events
 $ns at 0.01 "$cbr0 start"
 $ns at 0.01 "$cbr1 start"
 $ns at 5.0 "finish"
