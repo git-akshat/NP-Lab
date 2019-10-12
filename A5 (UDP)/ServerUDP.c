@@ -24,43 +24,33 @@ int main()
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Creating socket file descriptor 
-	if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 )
-	{ 
-		printf("socket creation failed"); 
-		exit(-1); 
-	} 
+	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 	
 	// memset(void *address, int value, size_t length);
 	memset(&servaddr, 0, sizeof(servaddr)); 
 	memset(&cliaddr, 0, sizeof(cliaddr)); 
+	len = sizeof(cliaddr);
 	
 	// Filling server information 
-	//INADDR_ANY tells the socket to listen on all available interfaces
 	servaddr.sin_family = AF_INET; // IPv4 
-	servaddr.sin_addr.s_addr = INADDR_ANY; 
+	servaddr.sin_addr.s_addr = INADDR_ANY; //INADDR_ANY listen on all available interfaces
 	servaddr.sin_port = htons(PORT); 
 	
 	// Bind the socket with the server address 
-	if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0 ) 
-	{ 
-		printf("bind failed"); 
-		exit(-1); 
-	}
-	else
+	if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) >= 0 ) 
 	{
 		printf("Waiting for message from client...\n");
 	}
 	 
 	while(1)
 	{
-		n = recvfrom(sockfd, (char *)buffer, MAX, MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len); 
+		n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, ( struct sockaddr *) &cliaddr, &len); 
 		buffer[n] = '\0'; 
 		printf("Client : %s", buffer); 
 		
 		printf("Server : ");
 		fgets(msg, MAX, stdin);
-		sendto(sockfd, (const char *)msg, strlen(msg), MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
+		sendto(sockfd, (const char *)msg, strlen(msg), 0, (const struct sockaddr *) &cliaddr, len);
 	}
-		
 	return 0; 
 } 
