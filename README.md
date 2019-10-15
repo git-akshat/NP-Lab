@@ -1,5 +1,6 @@
 # NP-Lab
 This repository contains programs implemented in Network Programing Lab in my 7th semester of SIT(VTU).
+________________________________________________________________________________________________________________
 
 ### Part A
 -----------------------------------------------------------------------------------------------------------------
@@ -35,7 +36,9 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 
 #### 7. Simulate simple ad-hoc network with transmitting nodes and determine the performance with respect to transmission of packets.
 -----------------------------------------------------------------------------------------------------------------
+
 ### For Network simulation using NS2
+________________________________________________________________________________________________________________
 
 ### (1) Install NS2
 ` sudo apt-get install ns2 `
