@@ -1,5 +1,5 @@
 # NP-Lab
-This repository contains programs implemented in Network Programing Lab in my 7th semester of SIT(VTU).
+#### This repository contains programs implemented in Network Programing Lab in my 7th semester of SIT(VTU).
 -----------------------------------------------------------------------------------------------------------------
 ### Part A
 -----------------------------------------------------------------------------------------------------------------

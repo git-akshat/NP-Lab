@@ -2,9 +2,9 @@
 set ns [new Simulator]
 
 # open trace and NAM trace file in write mode
-set tf [open lab.tr w]
+set tf [open out.tr w]
 $ns trace-all $tf
-set nf [open lab.nam w]
+set nf [open out.nam w]
 $ns namtrace-all $nf
 
 # create 4 nodes
@@ -48,12 +48,12 @@ $cbr1 set interval_ 0.005
 proc finish {} {
 	global ns nf tf
 	$ns flush-trace
-	exec nam lab.nam &
+	exec nam out.nam &
 	close $tf 
 	close $nf
 	
 	set count 0
-	set tf [open lab.tr r]
+	set tf [open out.tr r]
 	while {[gets $tf line] != -1} {
 		if { [string match "d*" $line] } {
 			set count [expr $count + 1]
@@ -68,3 +68,8 @@ $ns at 0.01 "$cbr0 start"
 $ns at 0.01 "$cbr1 start"
 $ns at 5.0 "finish"
 $ns run
+
+######################## output ################################
+# akshat@pop-os:~/Desktop/NP Lab/B1 (P2P)$ ns lab1.tcl 
+# Number of packets dropped: 655
+################################################################
