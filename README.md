@@ -1,7 +1,6 @@
 # NP-Lab
 This repository contains programs implemented in Network Programing Lab in my 7th semester of SIT(VTU).
-________________________________________________________________________________________________________________
-
+-----------------------------------------------------------------------------------------------------------------
 ### Part A
 -----------------------------------------------------------------------------------------------------------------
 #### 1. For the given network graph, write a program to implement Link state routing algorithm to build a routing table for the given node.
@@ -21,7 +20,7 @@ ________________________________________________________________________________
 #### 8. Write a program for error detecting code using 16 bits CRC-CCITT(Consultative Committee for International Telephony and Telegraphy).
 -----------------------------------------------------------------------------------------------------------------
 ### Part B : using NS2 simulator
-
+-----------------------------------------------------------------------------------------------------------------
 #### 1. Simulate a three nodes point – to – point network with duplex links between them. Set the queue size and vary the bandwidth and find the number of packets dropped.
 
 #### 2. Simulate the different types of Internet traffic such as FTP and TELNET over a network and analyze the throughput.
@@ -36,10 +35,8 @@ ________________________________________________________________________________
 
 #### 7. Simulate simple ad-hoc network with transmitting nodes and determine the performance with respect to transmission of packets.
 -----------------------------------------------------------------------------------------------------------------
-
 ### For Network simulation using NS2
-________________________________________________________________________________________________________________
-
+-----------------------------------------------------------------------------------------------------------------
 ### (1) Install NS2
 ` sudo apt-get install ns2 `
 
