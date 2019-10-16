@@ -42,6 +42,7 @@ int main()
     /*  keep printing any data received from the server */
     while ((n = recv(sock, buffer, sizeof(buffer), 0)) > 0)
     {
+	buffer[n] = '\0' ;
         printf("%s", buffer);
     }
     
