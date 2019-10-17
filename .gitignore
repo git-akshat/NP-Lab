@@ -53,8 +53,3 @@ dkms.conf
 
 # vscode
 .vscode
-
-# outputs
-*.png
-*.jpg
-*.jpeg
