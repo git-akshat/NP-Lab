@@ -46,7 +46,6 @@ int main()
 	/* new_socket = accept(int fd, addr, addrlen) */
 	sock = accept(server_fd, NULL, NULL);
 
-	int i=0;
 	int k=0; // iterator for res[MAX]
 	srand(time(NULL));
 
@@ -83,13 +82,8 @@ int main()
 			printf("\n\nPacket received = %s", frame);
 			printf("\nError at byte   = %d", err_idx+1);
 			printf("\nReceiving window: ");
-			printf("\n start seqno = %d", i);
-			printf("\n end seqno   = %d", i+err_idx);
-
-			i = i + err_idx;
-			ack = i; 
+			printf("\n start seqno = %d", k-err_idx);
 		}
-
 		else
 		{ 
 			for(j=0; j<recvsize ; j++)
@@ -98,13 +92,11 @@ int main()
 			}
 			printf("\n\nPacket received = %s", frame);
 			printf("\nReceiving window: ");
-			printf("\n start seqno = %d", i);
-			printf("\n end seqno   = %d", i+recvsize-1);
-			
-			i = i + recvsize;
-			ack = i;  
+			printf("\n start seqno = %d", k-recvsize);
 		}
 
+		printf("\n end seqno   = %d", k-1);
+		ack = k ;
 		printf("\nSending ack = %d", ack);
 		send(sock, &ack, sizeof(ack), 0) ;  
 	}
