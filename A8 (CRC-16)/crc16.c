@@ -19,6 +19,7 @@ void crc(char *data, char *gen, char *rem)
     {
         if(out[i] == '1')
         {
+            out[i] = '0' ; 
             for(j=1; j<strlen(gen); j++)
             {
                 out[i+j] = (out[i+j] == gen[j]) ? '0' : '1';
