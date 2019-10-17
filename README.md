@@ -2,7 +2,7 @@
 This repository contains programs implemented in Network Programing Lab in my 7th semester of SIT(VTU).
 
 
-#### Part A
+### Part A
 1. For the given network graph, write a program to implement Link state routing algorithm to build a routing table for the given node.
 
 2. Write a program to divide the message into variable length frames and sort them and display the message at the receiving side.
@@ -20,7 +20,7 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 8. Write a program for error detecting code using 16 bits CRC-CCITT(Consultative Committee for International Telephony and Telegraphy).
 
 
-#### Part B : using NS2 simulator
+### Part B : using NS2 simulator
 1. Simulate a three nodes point – to – point network with duplex links between them. Set the queue size and vary the bandwidth and find the number of packets dropped.
 
 2. Simulate the different types of Internet traffic such as FTP and TELNET over a network and analyze the throughput.
@@ -36,15 +36,12 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 7. Simulate simple ad-hoc network with transmitting nodes and determine the performance with respect to transmission of packets.
 
 
-#### For Network simulation using NS2
+### For Network simulation using NS2
 1. Install NS2
-
-` sudo apt-get install ns2 `
+  ` sudo apt-get install ns2 `
 
 2. Install NAM(Network animator)
-
-` sudo apt-get install nam `
+  ` sudo apt-get install nam `
 
 3. Install tcl(Tool command language)
-
-` sudo apt-get install tcl `
+  ` sudo apt-get install tcl `
