@@ -22,14 +22,12 @@ int main()
     struct sockaddr_in addr;
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
-
     addr.sin_family = AF_INET;
     addr.sin_port = htons(1234); // PORT = 1234
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     /*  keep trying to establish connection with server */
     while(connect(sock, (struct sockaddr *) &addr, sizeof(addr))) ;
-
     printf("\nClient is connected to Server\n");
 
     printf("\nEnter message to send : ");
@@ -39,7 +37,7 @@ int main()
     while(i<strlen(msg)) 
     { 
         int sendsize = 5;
-
+        
         // memset(starting_addr , value , length)
         memset(frame, 0, MAX); // re-initialise frame buffer with 0
 
@@ -50,7 +48,6 @@ int main()
         {
             sendsize = strlen(frame);
         }
-
         printf("\n\nSending packet = %s", frame);
         printf("\nSending window: ");
         printf("\n start seqno = %d", i);
@@ -67,9 +64,8 @@ int main()
         // next data seq no = incoming ack no
         i = ack;
     }
-
     send(sock, "Exit", strlen("Exit"), 0); 
-    printf("\n\n");
 
+    printf("\n\n");
     close(sock);
 }

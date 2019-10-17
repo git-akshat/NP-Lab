@@ -28,14 +28,12 @@ int main ()
         printf("Datagram socket error");
         exit(1);
     }
-        
-    memset(&groupaddr, 0, sizeof(groupaddr));
 
+    memset(&groupaddr, 0, sizeof(groupaddr));
     groupaddr.sin_family = AF_INET;
     groupaddr.sin_addr.s_addr = inet_addr("226.1.1.1");
     groupaddr.sin_port = htons(1234);
 
-    /* Set local interface for outbound multicast datagrams. */
     /* localInterface.s_addr = inet_addr("your system ip address") */
     localInterface.s_addr = INADDR_ANY; 
     if(setsockopt(sockfd, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface)) < 0)
@@ -47,7 +45,6 @@ int main ()
     printf("Enter message : ");
     fgets(msg, 1024, stdin);
     msg[strlen(msg)-1] = '\0'; // to remove '\n' from string
-
     sendto(sockfd, msg, sizeof(msg), 0, (struct sockaddr*)&groupaddr, sizeof(groupaddr));
     printf("Message Sent.\n");
             

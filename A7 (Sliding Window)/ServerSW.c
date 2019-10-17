@@ -22,38 +22,30 @@ int main()
 	char frame[MAX];
 	char res[MAX]; // to store all bytes that are recieved successfully
 	struct sockaddr_in addr;
-
 	int ack;
 
 	/* creating socket file descriptor */
-	/* sockfd = socket(domain, type, protocol) */ 
-	server_fd = socket(AF_INET, SOCK_STREAM, 0);
-
+	server_fd = socket(AF_INET, SOCK_STREAM, 0); // sockfd = socket(domain, type, protocol)
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(1234); 
 	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
 	/* attaching socket to port */
-	/* bind(fd, addr , addrlen) */
 	bind(server_fd, (struct sockaddr *) &addr, sizeof(addr));
 	printf("\nServer is Online");
 
-	/* listen for connections from the socket */
 	/* listen(fd, backlog) */
-	listen(server_fd, 5);
+	listen(server_fd, 5); // listen for connections from client
 
-	/* accept a connection, we get a file descriptor */
-	/* new_socket = accept(int fd, addr, addrlen) */
+	/* new_sock = accept(int fd, addr, addrlen) */
 	sock = accept(server_fd, NULL, NULL);
 
 	int k=0; // iterator for res[MAX]
 	srand(time(NULL));
-
+	
 	while(1) 
 	{ 
 		int recvsize = 5;
-
-		// memset(starting_addr , value , length)
 		memset(frame, 0, MAX); // re-initialise frame buffer with 0
 
 		// recv(socket, buffer, length, flag)
@@ -64,10 +56,7 @@ int main()
 			recvsize = strlen(frame);
 		}
 		// at end exit frame is recieved from client
-		if(strcmp(frame, "Exit") == 0) 
-		{ 
-			break; 
-		} 
+		if(strcmp(frame, "Exit") == 0) break;
 		
 		int err_idx = rand()%8; // probability of byte to get corrupted = 50%
 		int j;
@@ -94,18 +83,16 @@ int main()
 			printf("\nReceiving window: ");
 			printf("\n start seqno = %d", k-recvsize);
 		}
-
 		printf("\n end seqno   = %d", k-1);
 		ack = k ;
 		printf("\nSending ack = %d", ack);
 		send(sock, &ack, sizeof(ack), 0) ;  
 	}
-
 	res[k] = '\0';
 	printf("\n\nFinal string recieved at Destination = ");
 	fputs(res, stdout);
-	printf("\n\n");
 
+	printf("\n\n");
 	close(sock);
 	close(server_fd);
 }
