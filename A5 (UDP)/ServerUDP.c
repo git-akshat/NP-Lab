@@ -20,7 +20,7 @@ int main()
 	int len, n;
 	int sockfd; 
 	char buffer[MAX]; 
-	char *msg; 
+	char msg[MAX]; 
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Creating socket file descriptor 
