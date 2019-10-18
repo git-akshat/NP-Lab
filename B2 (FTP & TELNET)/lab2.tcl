@@ -16,7 +16,8 @@ set n3 [$ns node]
 # create duplex links between nodes
 $ns duplex-link $n0 $n2 2Mb 1ms DropTail
 $ns duplex-link $n1 $n2 2Mb 1ms DropTail
-$ns duplex-link $n2 $n3 2Mb 1ms DropTail
+$ns simplex-link $n2 $n3 2Mb 1ms DropTail
+$ns simplex-link $n3 $n2 2Mb 1ms DropTail
 
 # set n0 and n1 as tcp source
 set tcp0 [new Agent/TCP]
@@ -25,10 +26,10 @@ $ns attach-agent $n0 $tcp0
 $ns attach-agent $n1 $tcp1
 
 # set n3 as tcp destination for n0 and n1
-set TCPS0_3 [new Agent/TCPSink]
-set TCPS1_3 [new Agent/TCPSink]
-$ns attach-agent $n3 $TCPS0_3
-$ns attach-agent $n3 $TCPS1_3
+set TCPS0 [new Agent/TCPSink]
+set TCPS1 [new Agent/TCPSink]
+$ns attach-agent $n3 $TCPS0
+$ns attach-agent $n3 $TCPS1
 
 # set ftp over tcp0
 set ftp0 [new Application/FTP]
@@ -38,9 +39,12 @@ $ftp0 attach-agent $tcp0
 set tel1 [new Application/Telnet]
 $tel1 attach-agent $tcp1
 
+$tel1 set packetSize_ 1000Mb
+$tel1 set interval_ 0.00001
+
 # connect source to destination
-$ns connect $tcp0 $TCPS0_3
-$ns connect $tcp1 $TCPS1_3
+$ns connect $tcp0 $TCPS0
+$ns connect $tcp1 $TCPS1
 
 proc finish { } {
 	global ns nf tf
@@ -68,13 +72,11 @@ proc finish { } {
 # schedule events
 $ns at 0.01 "$ftp0 start"
 $ns at 0.01 "$tel1 start"
-$ns at 1.01 "$ftp0 stop"
-$ns at 1.01 "$tel1 stop"
-$ns at 5.0 "finish"
+$ns at 1.01 "finish"
 $ns run
 
-######################## output ################################
-# akshat@pop-os:~/Desktop/NP Lab/B2 (FTP & TELNET)$ ns lab2.tcl 
-# No of FTP packets: 1536
-# No of TELNET packets: 12
-################################################################
+######################## output ########
+# akshat@pop-os:~/Desktop$ ns lab2.tcl 
+# No of FTP packets: 805
+# No of TELNET packets: 787
+########################################
