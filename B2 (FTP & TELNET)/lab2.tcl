@@ -16,8 +16,7 @@ set n3 [$ns node]
 # create duplex links between nodes
 $ns duplex-link $n0 $n2 2Mb 1ms DropTail
 $ns duplex-link $n1 $n2 2Mb 1ms DropTail
-$ns simplex-link $n2 $n3 2Mb 1ms DropTail
-$ns simplex-link $n3 $n2 2Mb 1ms DropTail
+$ns duplex-link $n2 $n3 2Mb 1ms DropTail
 
 # set n0 and n1 as tcp source
 set tcp0 [new Agent/TCP]
@@ -53,6 +52,8 @@ proc finish { } {
 	close $tf
 	close $nf
 
+	# time = finish_time – start_time = 1.01 – 0.01 = 1
+	set time 1
 	set fCount 0
 	set tCount 0
 	set tf [open out.tr r]
@@ -64,8 +65,8 @@ proc finish { } {
 			set tCount [expr $tCount + 1]
 		}
 	}
-	puts "No of FTP packets: $fCount"
-	puts "No of TELNET packets: $tCount"
+	puts "Throughput of FTP: [expr $fCount/$time]"
+	puts "Throughput of TELNET: [expr $tCount/$time]"
 	exit 0
 }
 
