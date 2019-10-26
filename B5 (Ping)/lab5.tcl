@@ -9,14 +9,14 @@ $ns namtrace-all $nf
 
 # Decide the topology
 #
-#	[s0][ping]      [ping]      [ping]
-#		[n0]         [n1]        [n3]
+#   [s0][ping]      [ping]      [ping]
+#      [n0]          [n1]        [n3]
 #         '.          |          .'	
 #           '.        |        .'
 #             '.      |      .'
 #               '.    |    .'
 #                 '.  |  .'
-#                   [n2]
+#                    [n2]
 #                  .' | '.
 #                .'   |   '.
 #              .'     |     '.
