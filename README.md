@@ -38,10 +38,10 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 
 ### For Network simulation using NS2
 1. Install NS2
-  ` sudo apt-get install ns2 `
+  ` sudo apt install ns2 `
 
 2. Install NAM(Network animator)
-  ` sudo apt-get install nam `
+  ` sudo apt install nam `
 
 3. Install tcl(Tool command language)
-  ` sudo apt-get install tcl `
+  ` sudo apt install tcl `
