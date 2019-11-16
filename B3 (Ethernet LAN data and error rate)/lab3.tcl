@@ -7,6 +7,27 @@ set nf [open out.nam w]
 $ns trace-all $tf
 $ns namtrace-all $nf
 
+# vary values of these user-defined variables for different output
+set erate 0.2
+set psize 500Mb
+set ptime 0.001
+
+############## Select a topology #####################
+#
+#            [udp1]               duplex-link
+#.    [n0]    [n1]  [n2]    [n3]-------------
+#       |      |      |      |              |
+#       |      |      |      |              |
+#   -------------------------------lan7     |
+#                                           |
+#   -------------------------------lan8     |
+#        |       |        |                 |
+#        |       |        |                 |
+#       [n4]    [n5]     [n6]----------------	
+#              [null5]
+#
+#####################################################
+
 # Create nodes
 set n0 [$ns node]
 set n1 [$ns node]
@@ -15,11 +36,6 @@ set n3 [$ns node]
 set n4 [$ns node]
 set n5 [$ns node]
 set n6 [$ns node]
-
-# vary this for different output
-set erate 0.2
-set psize 500Mb
-set ptime 0.001
 
 # set label and color (OPTIONAL)
 $n1 label "udp/source"
@@ -80,7 +96,7 @@ proc finish { } {
 	
 	set thr [expr $count/5]
 	puts "Error rate : $erate"
-	puts "Data rate  : $psize/$ptime sec"
+	puts "Data rate  : $psize / $ptime sec"
 	puts "Throughput : $thr"
 	exit 0
 }
@@ -94,25 +110,11 @@ $ns run
 # Error rate : 0.2
 # Data rate  : 500Mb/0.001 sec
 # Throughput : 781
+########################################################
 
 ######################### output-2 #####################
 # nplaba1@linux-HP-Pro-3090-MT:~/akshat$ ns lab3.tcl
 # Error rate : 0.3
 # Data rate  : 1000Mb/0.001 sec
 # Throughput : 681
-
-############################ NAM output ################
-#
-#            [udp1]               duplex-link
-#.    [n0]    [n1]  [n2]    [n3]-------------
-#       |      |      |      |              |
-#       |      |      |      |              |
-#   -------------------------------lan7     |
-#                                           |
-#   -------------------------------lan8     |
-#        |       |        |                 |
-#        |       |        |                 |
-#       [n4]    [n5]     [n6]----------------	
-#              [null5]
-#
-#########################################################
+########################################################

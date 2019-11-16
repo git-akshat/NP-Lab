@@ -7,6 +7,18 @@ $ns trace-all $tf
 set nf [open out.nam w]
 $ns namtrace-all $nf
 
+##### Decide a topology #########
+#
+#   [udp][cbr]
+#     [0]------
+#              |      [null]
+#             [2]------[3]
+#              |
+#     [1]------
+#  [udp][cbr]
+#
+#################################
+
 # create 4 nodes
 set n0 [$ns node]
 set n1 [$ns node]
@@ -17,6 +29,11 @@ set n3 [$ns node]
 $ns duplex-link $n0 $n2 10Mb 300ms DropTail
 $ns duplex-link $n1 $n2 10Mb 300ms DropTail
 $ns duplex-link $n2 $n3 1Mb 300ms DropTail
+
+# set up queue size
+$ns queue-limit $n0 $n2 10
+$ns queue-limit $n1 $n2 10
+$ns queue-limit $n2 $n3 10
 
 # setup udp connection and set n0 and n1 as source node
 set udp0 [new Agent/UDP]
@@ -38,7 +55,7 @@ $ns attach-agent $n3 $null3
 $ns connect $udp0 $null3
 $ns connect $udp1 $null3
 
-# set packet size and interval for both cbr source
+# set bandwidth (vary values for different output)
 $cbr0 set packetSize_ 500Mb
 $cbr1 set packetSize_ 500Mb
 $cbr0 set interval_ 0.005
@@ -69,7 +86,7 @@ $ns at 0.01 "$cbr1 start"
 $ns at 5.0 "finish"
 $ns run
 
-######################## output ################################
-# akshat@pop-os:~/Desktop/NP Lab/B1 (P2P)$ ns lab1.tcl 
-# Number of packets dropped: 655
-################################################################
+############# output #############
+# akshat@pop-os:~/$ ns lab1.tcl 
+# Number of packets dropped: 700
+##################################

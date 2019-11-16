@@ -7,6 +7,20 @@ $ns trace-all $tf
 set nf [open out.nam w]
 $ns namtrace-all $nf
 
+######## Decide a topology #######
+#
+#    [ftp]
+#    [tcp]
+#     [0]------       
+#              |          [sink0]
+#             [2]------[3]
+#              |          [sink1]
+#      [1]------
+#     [tcp]
+#   [telnet]
+#
+##################################
+
 # create 4 nodes
 set n0 [$ns node]
 set n1 [$ns node]
@@ -38,8 +52,8 @@ $ftp0 attach-agent $tcp0
 set tel1 [new Application/Telnet]
 $tel1 attach-agent $tcp1
 
-$tel1 set packetSize_ 1000Mb
-$tel1 set interval_ 0.00001
+$tel1 set packetSize_ 500Mb
+$tel1 set interval_ 0.005
 
 # connect source to destination
 $ns connect $tcp0 $TCPS0
@@ -52,8 +66,8 @@ proc finish { } {
 	close $tf
 	close $nf
 
-	# time = finish_time – start_time = 1.01 – 0.01 = 1
-	set time 1
+	# because time difference between start and finish is 2
+	set time 2
 	set fCount 0
 	set tCount 0
 	set tf [open out.tr r]
@@ -73,11 +87,11 @@ proc finish { } {
 # schedule events
 $ns at 0.01 "$ftp0 start"
 $ns at 0.01 "$tel1 start"
-$ns at 1.01 "finish"
+$ns at 2.01 "finish"
 $ns run
 
 ######################## output ########
 # akshat@pop-os:~/Desktop$ ns lab2.tcl 
-# No of FTP packets: 805
-# No of TELNET packets: 787
+# No of FTP packets: 767
+# No of TELNET packets: 750
 ########################################
