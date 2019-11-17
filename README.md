@@ -48,4 +48,4 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 
 
 #### structure of trace file
-![trace-file](https://github.com/git-akshat/NP-Lab/tree/master/others/trace-file-structure.gif)
+    ![trace-file](https://github.com/git-akshat/NP-Lab/tree/master/others/trace-file-structure.gif)
