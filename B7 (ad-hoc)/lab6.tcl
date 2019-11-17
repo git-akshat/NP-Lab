@@ -120,8 +120,6 @@ proc finish { } {
 
     set ctr1 0
     set ctr2 0
-    set thr1 0
-    set thr2 0
     set fid [open out.tr r]
     
     while {[gets $fid line] != -1} {
@@ -132,10 +130,8 @@ proc finish { } {
             set ctr2 [expr $ctr2 + 1]
         }
     }
-    set thr1 [expr $ctr1/5]
-    set thr2 [expr $ctr2/5]
-    puts "\nThroughput from n0 to n1: $thr1"
-    puts "Throughput from n1 to n2: $thr2"
+    puts "\nThroughput from n0 to n1: $ctr1"
+    puts "Throughput from n1 to n2: $ctr2"
     exit 0
 }
 
@@ -152,6 +148,6 @@ $ns run
 # highestAntennaZ_ = 1.5,  distCST_ = 550.0
 # SORTING LISTS ...DONE!
 # 
-# Throughput from n0 to n1: 1687
-# Throughput from n1 to n2: 600
+# Throughput from n0 to n1: 8438
+# Throughput from n1 to n2: 3000
 ############################################################
