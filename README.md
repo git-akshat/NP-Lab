@@ -37,16 +37,16 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 
 
 ### For Network simulation using NS2
-1. Install NS2
-    	` sudo apt install ns2 `
+##### 1. Install NS2
+    ` sudo apt install ns2 `
 
-2. Install NAM(Network animator)
-		` sudo apt install nam `
+##### 2. Install NAM(Network animator)
+	` sudo apt install nam `
 
-3. Install tcl(Tool command language)
-		` sudo apt install tcl `
+##### 3. Install tcl(Tool command language)
+	` sudo apt install tcl `
 
 
 #### structure of trace file
-    
-![fig:trace-file](https://github.com/git-akshat/NP-Lab/tree/master/others/trace-file-structure.gif)
+
+![fig-1](https://github.com/git-akshat/NP-Lab/tree/master/others/trace-file-structure.gif)
