@@ -28,7 +28,7 @@ set n3 [$ns node]
 # Create lan and setup the link
 $ns make-lan -trace on "$n0 $n1 $n2 $n3" 100Mb 10ms LL Queue/DropTail Mac/802_3
 
-# Declare the required Protocols
+# Declare the required transport layer Protocols
 set tcp0 [new Agent/TCP]
 set tcp1 [new Agent/TCP]
 set udp2 [new Agent/UDP]
@@ -44,7 +44,7 @@ $ns attach-agent $n1 $null1
 $ns attach-agent $n2 $sink2
 $ns attach-agent $n3 $sink3
 
-# Declare the required Applications and attach them with their protocols
+# Declare Application layer protocols and attach them with their transport layer protocols
 set ftp0 [new Application/FTP]
 set ftp1 [new Application/FTP]
 set cbr2 [new Application/Traffic/CBR]

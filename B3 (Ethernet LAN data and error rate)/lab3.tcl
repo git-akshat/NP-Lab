@@ -55,7 +55,7 @@ $ns make-lan "$n4 $n5 $n6" 10Mb 10ms LL Queue/DropTail Mac/802_3
 # Setup Links
 $ns duplex-link $n3 $n6 10Mb 10ms DropTail
 
-# Declare the protocol and source and destination node
+# Declare the transport layer protocols
 set udp1 [new Agent/UDP]
 set null5 [new Agent/Null]
 $ns attach-agent $n1 $udp1
