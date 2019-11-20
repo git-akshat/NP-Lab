@@ -108,7 +108,7 @@ $ns connect $tcp1 $sink2
 $ns at 1 "$ftp0 start"
 $ns at 1 "$ftp1 start"
 
-# move n1 near to node n2 at 50ms and come back near to node n0 at 100ms
+# move n1 near to node n2 at 50s and come back near to node n0 at 100s
 $ns at 50 "$n1 setdest 300 300 15"
 $ns at 100 "$n1 setdest 100 100 15"
 
