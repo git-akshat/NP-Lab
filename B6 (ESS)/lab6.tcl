@@ -37,13 +37,13 @@ $ns node-config -adhocRouting DSDV \
 # Create a god object
 create-god 3
 
-# Decide the topology
-
-#  500
+################### Decide the topology ###############
+#
+#      500
 #	|
-#   |
+#       |
 #	|							
-#  400                          [sink2]
+#      400                          [sink2]
 #	|                            [n2]	
 #	|                           .'
 #	|                         .'
@@ -51,12 +51,12 @@ create-god 3
 #	|                    .'
 #	|                  .'
 #	|               .'
-#  100          [n1]
+#      100          [n1]
 #	|         .'[sink1]	
 #	|       .'  [tcp1]
-#   10  [n0]    [ftp1]
-#	|   [tcp0]
-#	|   [ftp0]
+#      10   [n0]    [ftp1]
+#	|  [tcp0]
+#	|  [ftp0]
 #	|
 #	|____10______100_______________400_________500
 
