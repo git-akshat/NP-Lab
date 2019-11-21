@@ -116,6 +116,7 @@ proc finish { } {
     set tf [open out.tr r]
     
     while {[gets $tf line] != -1} {
+        # r-received, _1_ - destination node
         if {[string match "r*_1_*AGT*" $line]} {
             set ctr1 [expr $ctr1 + 1]
         }
@@ -134,11 +135,9 @@ proc finish { } {
 $ns at 50 "$n1 setdest 300 300 15"
 $ns at 100 "$n1 setdest 100 100 15"
 
-# start ftp
+# start ftp traffic
 $ns at 1 "$ftp0 start"
 $ns at 1 "$ftp1 start"
-
-
 $ns at 150 "finish"
 $ns run
 
