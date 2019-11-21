@@ -9,57 +9,55 @@ $ns namtrace-all $nf
 
 # Decide the topology
 #
-#   [s0][ping]           
-#      [n0]                 
-#         '.                   	
-#           '.              
-#             '.          
-#               '.       
-#                 '.   
-#                    [n2]
-#                  .' | '.
-#                .'   |   '.
-#              .'     |     '.
-#            .'       |       '.
-#          .'         |         '.
-#        .'           |           '.
-#      [n4]          [n5]         [n6]
-#    [ping][d0]   [s1][ping]   [ping][d1]
+#       [s0][ping]           [ping][s1]
+#          [n0]                [n3]
+#            '.                .'	
+#              '.            .'
+#                '.        .'
+#                  '.    .'
+#                    [n1]
+#                  .'    '.
+#                .'        '.
+#              .'            '.
+#            .'                '.
+#          .'                    '.
+#        [n2]                     [n4]
+#      [ping][d0]               [ping][d1]
 
 # Create the nodes
 set n0 [$ns node]
+set n1 [$ns node]
 set n2 [$ns node]
+set n3 [$ns node]
 set n4 [$ns node]
-set n5 [$ns node]
-set n6 [$ns node]
 
 # set up links
-$ns duplex-link $n0 $n2 100Mb 300ms DropTail
-$ns duplex-link $n5 $n2 100Mb 300ms DropTail
-$ns duplex-link $n2 $n4 1Mb 300ms DropTail
-$ns duplex-link $n2 $n6 1Mb 300ms DropTail
+$ns duplex-link $n0 $n1 100Mb 300ms DropTail
+$ns duplex-link $n3 $n1 100Mb 300ms DropTail
+$ns duplex-link $n2 $n1 1Mb 300ms DropTail
+$ns duplex-link $n4 $n1 1Mb 300ms DropTail
 
 # set up queue size
-$ns queue-limit $n0 $n2 5
-$ns queue-limit $n5 $n2 5
-$ns queue-limit $n2 $n4 3
-$ns queue-limit $n2 $n6 2
+$ns queue-limit $n0 $n1 5
+$ns queue-limit $n3 $n1 5
+$ns queue-limit $n2 $n1 3
+$ns queue-limit $n4 $n1 2
 
 # Declare the agents/protocols
 set ping0 [new Agent/Ping]
+set ping2 [new Agent/Ping]
+set ping3 [new Agent/Ping]
 set ping4 [new Agent/Ping]
-set ping5 [new Agent/Ping]
-set ping6 [new Agent/Ping]
 
 # Attach the ping with the respective nodes
 $ns attach-agent $n0 $ping0
+$ns attach-agent $n2 $ping2
+$ns attach-agent $n3 $ping3
 $ns attach-agent $n4 $ping4
-$ns attach-agent $n5 $ping5
-$ns attach-agent $n6 $ping6
 
 # Connect the ping from source to destination
-$ns connect $ping0 $ping4
-$ns connect $ping5 $ping6
+$ns connect $ping0 $ping2
+$ns connect $ping3 $ping4
 
 # Write proc for ping agent
 Agent/Ping instproc recv {from rtt} {
@@ -78,6 +76,7 @@ proc finish { } {
 	set count 0
 	set tr [open out.tr r]
 	while {[gets $tr line]!=-1} {
+        # d is event in the trace file which denotes dropped packets
 		if {[string match "d*" $line]} {
 			set count [expr $count + 1]
 		}
@@ -86,42 +85,41 @@ proc finish { } {
 	exit 0
 }
 
-$ns rtmodel-at 0.9 down $n2 $n6
-$ns rtmodel-at 1.9 up $n2 $n6
+$ns rtmodel-at 0.9 down $n1 $n4
+$ns rtmodel-at 1.9 up $n1 $n4
 
 # schedule events
 for {set i 0.1} {$i<2} {set i [expr $i+0.1]} {
     $ns at $i "$ping0 send"
-    $ns at $i "$ping5 send"
+    $ns at $i "$ping3 send"
 }
 
 $ns at 5.0 "finish"
 $ns run
 
 ####################### output #########################
-# nplaba1@linux-HP-Pro-3090-MT:~/akshat/B4 $ ns lab5.tcl
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 5 recieved 6 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 5 recieved 6 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 5 recieved 6 with round trip time 1201.0
-# The node 0 recieved 4 with round trip time 1201.0
-# The node 5 recieved 6 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 3 recieved 4 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 3 recieved 4 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 3 recieved 4 with round trip time 1201.0
+# The node 0 recieved 2 with round trip time 1201.0
+# The node 3 recieved 4 with round trip time 1201.0
 # No. of packet dropped : 5
 ########################################################
