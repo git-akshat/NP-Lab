@@ -9,13 +9,13 @@ $ns namtrace-all $nf
 
 # Decide the topology
 #
-#   [s0][ping]      [ping]      [ping]
-#      [n0]          [n1]        [n3]
-#         '.          |          .'	
-#           '.        |        .'
-#             '.      |      .'
-#               '.    |    .'
-#                 '.  |  .'
+#   [s0][ping]           
+#      [n0]                 
+#         '.                   	
+#           '.              
+#             '.          
+#               '.       
+#                 '.   
 #                    [n2]
 #                  .' | '.
 #                .'   |   '.
@@ -28,9 +28,7 @@ $ns namtrace-all $nf
 
 # Create the nodes
 set n0 [$ns node]
-set n1 [$ns node]
 set n2 [$ns node]
-set n3 [$ns node]
 set n4 [$ns node]
 set n5 [$ns node]
 set n6 [$ns node]
@@ -38,8 +36,6 @@ set n6 [$ns node]
 # set up links
 $ns duplex-link $n0 $n2 100Mb 300ms DropTail
 $ns duplex-link $n5 $n2 100Mb 300ms DropTail
-$ns duplex-link $n1 $n2 1Mb 300ms DropTail
-$ns duplex-link $n3 $n2 1Mb 300ms DropTail
 $ns duplex-link $n2 $n4 1Mb 300ms DropTail
 $ns duplex-link $n2 $n6 1Mb 300ms DropTail
 
