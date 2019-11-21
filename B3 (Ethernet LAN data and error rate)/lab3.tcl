@@ -101,7 +101,7 @@ proc finish { } {
 }
 
 $ns at 0.1 "$cbr1 start"
-$ns at 5.0 "finish"
+$ns at 5.1 "finish"
 $ns run
 
 ######################### output-1 #####################
