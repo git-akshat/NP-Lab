@@ -43,22 +43,22 @@ create-god 3
 #	|
 #   |
 #	|							
-#  400 							[sink2]
-#	|					        [n2]	
-#	|					      .'
-#	|					    .'
-#	|					  .'
-#	|					.'
-#	|				  .'
-#	|				.'
-#  100			[n1]
-#	|		  .'[sink1]	
-#	|		.'	[tcp1]
-#   10	[n0]	[ftp1]
-#	|	[tcp0]
-#	|	[ftp0]
+#  400                          [sink2]
+#	|                            [n2]	
+#	|                           .'
+#	|                         .'
+#	|                      .'
+#	|                    .'
+#	|                  .'
+#	|               .'
+#  100          [n1]
+#	|         .'[sink1]	
+#	|       .'  [tcp1]
+#   10  [n0]    [ftp1]
+#	|   [tcp0]
+#	|   [ftp0]
 #	|
-#	|____10______100__________________400_________500
+#	|____10______100_______________400_________500
 
 # Create nodes
 set n0 [$ns node]
@@ -116,7 +116,7 @@ proc finish { } {
     set tf [open out.tr r]
     
     while {[gets $tf line] != -1} {
-        # r-received, _1_ - destination node
+        # r->received, _1_ -> destination node
         if {[string match "r*_1_*AGT*" $line]} {
             set ctr1 [expr $ctr1 + 1]
         }
