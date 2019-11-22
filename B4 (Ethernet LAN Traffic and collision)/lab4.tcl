@@ -1,3 +1,6 @@
+# 4. Simulate an Ethernet LAN using n nodes and set multiple traffic nodes and determine the collision across different nodes.
+
+
 # Declare a new Simulator
 set ns [new Simulator]
 
