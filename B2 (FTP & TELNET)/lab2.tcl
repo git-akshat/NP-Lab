@@ -1,3 +1,5 @@
+# 2. Simulate the different types of Internet traffic such as FTP and TELNET over a network and analyze the throughput.
+
 # create a new simulator
 set ns [new Simulator]
 

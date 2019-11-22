@@ -1,3 +1,5 @@
+# 5. Simulate the transmission of ping messages over a network topology consisting of 6 nodes and find the number of packets dropped due to congestion.
+
 # Declare new Simulator
 set ns [new Simulator]
 
