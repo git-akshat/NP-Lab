@@ -1,3 +1,6 @@
+# 1. Simulate a three nodes point – to – point network with duplex links between them. Set the queue size and vary the bandwidth and find the number of packets dropped.
+
+
 # create a new simulator
 set ns [new Simulator]
 
@@ -35,13 +38,13 @@ $ns queue-limit $n0 $n2 10
 $ns queue-limit $n1 $n2 10
 $ns queue-limit $n2 $n3 10
 
-# setup udp connection and set n0 and n1 as source node
+# setup udp connection for transport layer
 set udp0 [new Agent/UDP]
 set udp1 [new Agent/UDP]
 $ns attach-agent $n0 $udp0
 $ns attach-agent $n1 $udp1
 
-# setup cbr(constant bit rate) over udp connection
+# setup cbr(constant bit rate) over udp connection for application layer
 set cbr0 [new Application/Traffic/CBR]
 set cbr1 [new Application/Traffic/CBR]
 $cbr0 attach-agent $udp0
@@ -72,6 +75,7 @@ proc finish {} {
 	set count 0
 	set tf [open out.tr r]
 	while {[gets $tf line] != -1} {
+		# d is event in the trace file which denotes dropped packets 
 		if { [string match "d*" $line] } {
 			set count [expr $count + 1]
 		}

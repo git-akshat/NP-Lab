@@ -62,6 +62,6 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 #### 1. Install NS2
 ` yum install ns2 `
 
-#### structure of trace file
+### Structure of trace file
 
 ![trace-file-structure](https://github.com/git-akshat/NP-Lab/blob/master/others/trace-structure.png)

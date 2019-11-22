@@ -1,3 +1,5 @@
+# 2. Simulate the different types of Internet traffic such as FTP and TELNET over a network and analyze the throughput.
+
 # create a new simulator
 set ns [new Simulator]
 
@@ -53,7 +55,7 @@ set tel1 [new Application/Telnet]
 $tel1 attach-agent $tcp1
 
 $tel1 set packetSize_ 500Mb
-$tel1 set interval_ 0.005
+$tel1 set interval_ 0.001
 
 # connect source to destination
 $ns connect $tcp0 $TCPS0

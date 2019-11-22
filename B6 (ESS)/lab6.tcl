@@ -37,28 +37,28 @@ $ns node-config -adhocRouting DSDV \
 # Create a god object
 create-god 3
 
-# Decide the topology
-
-#  500
+################### Decide the topology ###############
+#
+#      500
 #	|
-#   |
+#       |
 #	|							
-#  400 							[sink2]
-#	|					        [n2]	
-#	|					      .'
-#	|					    .'
-#	|					  .'
-#	|					.'
-#	|				  .'
-#	|				.'
-#  100			[n1]
-#	|		  .'[sink1]	
-#	|		.'	[tcp1]
-#   10	[n0]	[ftp1]
-#	|	[tcp0]
-#	|	[ftp0]
+#      400                          [sink2]
+#	|                            [n2]	
+#	|                           .'
+#	|                         .'
+#	|                      .'
+#	|                    .'
+#	|                  .'
+#	|               .'
+#      100          [n1]
+#	|         .'[sink1]	
+#	|       .'  [tcp1]
+#      10   [n0]    [ftp1]
+#	|  [tcp0]
+#	|  [ftp0]
 #	|
-#	|____10______100__________________400_________500
+#	|____10______100_______________400_________500
 
 # Create nodes
 set n0 [$ns node]
@@ -104,13 +104,6 @@ $ftp1 attach-agent $tcp1
 $ns connect $tcp0 $sink1
 $ns connect $tcp1 $sink2
 
-# start ftp
-$ns at 1 "$ftp0 start"
-$ns at 1 "$ftp1 start"
-
-# move n1 near to node n2 at 50ms and come back near to node n0 at 100ms
-$ns at 50 "$n1 setdest 300 300 15"
-$ns at 100 "$n1 setdest 100 100 15"
 
 proc finish { } {
     global ns nf tf
@@ -120,9 +113,10 @@ proc finish { } {
 
     set ctr1 0
     set ctr2 0
-    set fid [open out.tr r]
+    set tf [open out.tr r]
     
-    while {[gets $fid line] != -1} {
+    while {[gets $tf line] != -1} {
+        # r->received, _1_ -> destination node
         if {[string match "r*_1_*AGT*" $line]} {
             set ctr1 [expr $ctr1 + 1]
         }
@@ -136,6 +130,14 @@ proc finish { } {
 }
 
 # schedule events
+
+# move n1 near to node n2 at 50s and come back near to node n0 at 100s
+$ns at 50 "$n1 setdest 300 300 15"
+$ns at 100 "$n1 setdest 100 100 15"
+
+# start ftp traffic
+$ns at 1 "$ftp0 start"
+$ns at 1 "$ftp1 start"
 $ns at 150 "finish"
 $ns run
 
