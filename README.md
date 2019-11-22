@@ -64,4 +64,6 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 
 ### Structure of trace file
 
+The trace(.tr) file contains 12 fields as shown in below figure:
+
 ![trace-file-structure](https://github.com/git-akshat/NP-Lab/blob/master/others/trace-structure.png)
