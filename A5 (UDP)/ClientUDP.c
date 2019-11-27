@@ -17,13 +17,13 @@
 
 int main() 
 { 
-	int n, len, sockfd;
+	int n, len, sock;
 	char buffer[MAX]; 
 	char msg[MAX]; 
 	struct sockaddr_in servaddr; 
 
 	// Creating socket file descriptor 
-	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+	sock = socket(AF_INET, SOCK_DGRAM, 0);
 
 	memset(&servaddr, 0, sizeof(servaddr)); 
 
@@ -32,15 +32,15 @@ int main()
 	servaddr.sin_port = htons(PORT); 
 	servaddr.sin_addr.s_addr = INADDR_ANY; 
 	
-	connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
+	connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr));
 	
 	while(1)
 	{
 		printf("Client : ");
 		fgets(msg, MAX, stdin); 
-		sendto(sockfd, (const char *)msg, strlen(msg), 0, (const struct sockaddr *) &servaddr, sizeof(servaddr));
+		sendto(sock, (const char *)msg, strlen(msg), 0, (const struct sockaddr *) &servaddr, sizeof(servaddr));
 			
-		n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, NULL, NULL); 
+		n = recvfrom(sock, (char *)buffer, sizeof(buffer), 0, NULL, NULL); 
 		buffer[n] = '\0'; 
 		printf("Server : %s", buffer); 
 	}

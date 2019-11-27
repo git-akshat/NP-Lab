@@ -12,15 +12,15 @@
 
 int main()
 {
-    int server_fd, sock, fd, n;
+    int sersock, sock, fd, n;
     char buffer[1024], fname[50];
     struct sockaddr_in addr;
 
     /* creating socket file descriptor */
     /* sockfd = socket(domain, type, protocol) */ 
-    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    sersock = socket(AF_INET, SOCK_STREAM, 0);
 
-    /* htons() converts the unsigned short integer
+    /* htons(PORT) converts the unsigned short integer
     ** from host byte order to network byte order.
     */
     addr.sin_family = AF_INET;
@@ -29,16 +29,16 @@ int main()
 
     /* attaching socket to port */
     /* bind(sockfd, addr , addrlen) */
-    bind(server_fd, (struct sockaddr *) &addr, sizeof(addr));
+    bind(sersock, (struct sockaddr *) &addr, sizeof(addr));
     printf("\nServer is Online");
 
     /* listen for connections from the socket */
     /* listen(int sockfd, int backlog) */
-    listen(server_fd, 5);
+    listen(sersock, 5);
 
     /* accept a connection, we get a file descriptor */
     /* new_socket = accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) */
-    sock = accept(server_fd, NULL, NULL);
+    sock = accept(sersock, NULL, NULL);
 
     /*  receive the filename */
     /* recv(int socket, const void *buffer, size_t length, int flags); */
@@ -47,10 +47,9 @@ int main()
 
     /*  open the file in read-only mode */
     fd = open(fname, O_RDONLY);
-
     if (fd < 0)
     {
-        send(sock, "\nFile not found\n", 15, 0);
+        send(sock, "\nFile not found\n", 15, 0); // strlen(\nFile not found)=15
     }
     else
     {
