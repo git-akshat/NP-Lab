@@ -39,7 +39,7 @@ int main()
 	}
 
 	group.imr_multiaddr.s_addr = inet_addr("226.1.1.1");
-	group.imr_interface.s_addr = INADDR_ANY; 
+	group.imr_interface.s_addr = inet_addr("127.0.0.1");
 	setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&group, sizeof(group));
 	printf("Waiting for message from server.....");
 

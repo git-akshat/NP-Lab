@@ -27,7 +27,7 @@ int main ()
     groupaddr.sin_addr.s_addr = inet_addr("226.1.1.1");
     groupaddr.sin_port = htons(1234);
 
-    localInterface.s_addr = INADDR_ANY;  // or system ip address
+    localInterface.s_addr = inet_addr("127.0.0.1");  // or system ip address
     setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, (char *)&localInterface, sizeof(localInterface));
 
     printf("Enter message : ");
