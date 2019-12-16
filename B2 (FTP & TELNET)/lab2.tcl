@@ -1,4 +1,7 @@
+# Author : Akshat Agarwal
+
 # 2. Simulate the different types of Internet traffic such as FTP and TELNET over a network and analyze the throughput.
+
 
 # create a new simulator
 set ns [new Simulator]
@@ -92,8 +95,9 @@ $ns at 0.01 "$tel1 start"
 $ns at 2.01 "finish"
 $ns run
 
-######################## output ########
-# akshat@pop-os:~/Desktop$ ns lab2.tcl 
+############### output #################
+
 # No of FTP packets: 767
 # No of TELNET packets: 750
+
 ########################################

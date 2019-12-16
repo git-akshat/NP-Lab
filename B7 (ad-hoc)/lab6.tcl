@@ -1,7 +1,8 @@
+# Author : Akshat Agarwal
 ################################################################
 # 6. A Simple ESS with transmitting nodes in Wireless LAN
 # 7. A simple ad-hoc network with transmitting nodes
-#Note: This program is applicable for both 6th and 7th program
+#Note: This code is applicable for both 6th and 7th program
 ################################################################
 
 # Declare new Simulator
@@ -37,13 +38,13 @@ $ns node-config -adhocRouting DSDV \
 # Create a god object
 create-god 3
 
-# Decide the topology
-
-#  500
+################### Decide the topology ###############
+#
+#      500
 #	|
-#   |
+#       |
 #	|							
-#  400                          [sink2]
+#      400                          [sink2]
 #	|                            [n2]	
 #	|                           .'
 #	|                         .'
@@ -51,12 +52,12 @@ create-god 3
 #	|                    .'
 #	|                  .'
 #	|               .'
-#  100          [n1]
+#      100          [n1]
 #	|         .'[sink1]	
 #	|       .'  [tcp1]
-#   10  [n0]    [ftp1]
-#	|   [tcp0]
-#	|   [ftp0]
+#      10   [n0]    [ftp1]
+#	|  [tcp0]
+#	|  [ftp0]
 #	|
 #	|____10______100_______________400_________500
 
@@ -142,14 +143,14 @@ $ns at 150 "finish"
 $ns run
 
 ######################## output ###########################
-# akshat@pop-os:~/Desktop$ ns lab6.tcl 
-#
+
 # num_nodes is set 3
 # INITIALIZE THE LIST xListHead
 # channel.cc:sendUp - Calc highestAntennaZ_ and distCST_
 # highestAntennaZ_ = 1.5,  distCST_ = 550.0
 # SORTING LISTS ...DONE!
-# 
+#
 # Throughput from n0 to n1: 8438
 # Throughput from n1 to n2: 3000
+
 ############################################################

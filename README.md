@@ -36,31 +36,20 @@ This repository contains programs implemented in Network Programing Lab in my 7t
 7. Simulate simple ad-hoc network with transmitting nodes and determine the performance with respect to transmission of packets.
 
 
-### For Network simulation using NS2
 
-### Systems using apt as the package manager
 
-##### 1. Install NS2
-` sudo apt install ns2 `
+### [For Network simulation using NS2](./others/Install-NS2.md) 
 
-##### 2. Install NAM(Network animator)
-` sudo apt install nam `
+#### 1. Install NS2 
+```sudo apt install ns2```
 
-##### 3. Install tcl(Tool command language)
-` sudo apt install tcl `
+#### 2. Install NAM(Network animator)
+```sudo apt install nam```
 
-### Systems using dnf as package manager
+#### 3. Install tcl(Tool command language)
+```sudo apt install tcl```
 
-#### 1. Search for packages using dnf
-` dnf search package-name `
 
-#### 2. Install the package
-` sudo dnf install package-name `
-
-### Systems using yum as package manager
-
-#### 1. Install NS2
-` yum install ns2 `
 
 ### Structure of trace file
 

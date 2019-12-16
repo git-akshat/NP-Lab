@@ -1,9 +1,10 @@
-/**************************************************
-* Program to implement sliding window protocol,
-  between two hosts(TCP Flow Control)
-* Client sends the packet
-* Server recieves the packet 
-***************************************************/
+/* Author : Akshat Agarwal
+
+7.  to implement sliding window protocol, between two hosts(TCP Flow Control)
+	- Client sends the frame
+	- Server recieves the frame */
+
+/* Client Program */
 
 #include<stdio.h> 
 #include<stdlib.h>
@@ -19,12 +20,10 @@ int main()
 { 
     int sock, ack; 
     char msg[MAX], frame[MAX]; 
-    struct sockaddr_in addr;
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(1234); // PORT = 1234
-    addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+    struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") }
 
     /*  keep trying to establish connection with server */
     while(connect(sock, (struct sockaddr *) &addr, sizeof(addr))) ;
@@ -37,8 +36,6 @@ int main()
     while(i<strlen(msg)) 
     { 
         int sendsize = 5;
-        
-        // memset(starting_addr , value , length)
         memset(frame, 0, MAX); // re-initialise frame buffer with 0
 
         // strncpy(destination , source , length)
@@ -53,16 +50,13 @@ int main()
         printf("\n start seqno = %d", i);
         printf("\n end seqno   = %d", i+sendsize-1);
 
-        // send(socket, buffer, length, flag)
         send(sock, frame, strlen(frame), 0); 
         printf("\nData sent. Waiting for ack...");
 
-        // recv(socket, buffer, length, flag)
         recv(sock, &ack, sendsize, 0); 
         printf("\nreceived ack no = %d ",ack);  
 
-        // next data seq no = incoming ack no
-        i = ack;
+        i = ack; // next data seq no = incoming ack no
     }
     send(sock, "Exit", strlen("Exit"), 0); 
 

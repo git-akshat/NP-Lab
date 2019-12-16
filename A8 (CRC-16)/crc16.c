@@ -1,4 +1,6 @@
-/* Write a program for Error Detection using CRC-CCITT(16 bits). */
+/* Author : Akshat Agarwal
+
+8. Write a program for Error Detection using CRC-CCITT(16 bits). */
 
 # include <stdio.h>
 # include <string.h>
@@ -27,10 +29,11 @@ void crc(char *data, char *gen, char *rem)
         }
     }
 
-    int idx = strlen(out)-strlen(gen)+1;
+    // size of output = strlen(gen)-1 = 16 bits 
+    int idx = strlen(out)- (strlen(gen)-1); // last 16 bits of out array
     for(i=0; i<strlen(gen)-1; i++)
     {
-        rem[i] = out[idx+i];
+        rem[i] = out[idx+i]; // last 16 bits of out array
     }
 }
 

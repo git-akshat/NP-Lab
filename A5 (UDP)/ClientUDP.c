@@ -1,7 +1,8 @@
-/*********************************************************
-* Using UDP, write a client – server program,
-* to exchange messages between client and the server.
-**********************************************************/
+/* Author : Akshat Agarwal
+
+5. Using UDP, write a client – server program, to exchange messages between client and the server. */
+
+/* Client Program */
 
 #include <stdio.h> 
 #include <stdlib.h> 
@@ -18,8 +19,7 @@
 int main() 
 { 
 	int n, len, sock;
-	char buffer[MAX]; 
-	char msg[MAX]; 
+	char buffer[MAX], msg[MAX]; 
 	struct sockaddr_in servaddr; 
 
 	// Creating socket file descriptor 

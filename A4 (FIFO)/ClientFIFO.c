@@ -1,8 +1,10 @@
-/*********************************************************
-* Using FIFOs as IPC, write a client – server program,
-* the client sends the file name and 
-* the server sends back the requested text file if present.
-**********************************************************/
+/* Author : Akshat Agarwal
+
+4. Using FIFOs as IPC, write a client – server program,
+    - the client sends the file name and 
+    - the server sends back the requested text file if present. */
+
+/* Client Program */
 
 #include <stdio.h>
 #include <unistd.h>

@@ -1,8 +1,10 @@
-/*********************************************************
-* Using TCP/IP sockets, write a client – server program,
-* the client sends the file name and 
-* the server sends back the requested text file if present.
-**********************************************************/
+/* Author : Akshat Agarwal
+
+3. Using TCP/IP sockets, write a client – server program,
+    - the client sends the file name and 
+    - the server sends back the requested text file if present. */
+
+/* Server Program */
 
 #include <stdio.h> 
 #include <stdlib.h> 
@@ -14,34 +16,20 @@ int main()
 {
     int sersock, sock, fd, n;
     char buffer[1024], fname[50];
-    struct sockaddr_in addr;
-
-    /* creating socket file descriptor */
+    
     /* sockfd = socket(domain, type, protocol) */ 
     sersock = socket(AF_INET, SOCK_STREAM, 0);
 
-    /* htons(PORT) converts the unsigned short integer
-    ** from host byte order to network byte order.
-    */
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(1234); 
-    addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") }
 
     /* attaching socket to port */
-    /* bind(sockfd, addr , addrlen) */
     bind(sersock, (struct sockaddr *) &addr, sizeof(addr));
     printf("\nServer is Online");
 
-    /* listen for connections from the socket */
-    /* listen(int sockfd, int backlog) */
-    listen(sersock, 5);
-
-    /* accept a connection, we get a file descriptor */
-    /* new_socket = accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) */
+    listen(sersock, 5); // listen(int sockfd, int backlog)
     sock = accept(sersock, NULL, NULL);
 
     /*  receive the filename */
-    /* recv(int socket, const void *buffer, size_t length, int flags); */
     recv(sock, fname, 50, 0);
     printf("\nRequesting for file: %s\n", fname);
 

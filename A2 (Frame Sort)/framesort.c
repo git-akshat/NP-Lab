@@ -1,7 +1,6 @@
-/******************************************************************
-Write a program to divide the message into variable length frames
-and sort them and display the message at the receiving side.
-*******************************************************************/
+/* Author : Gangadhar, Akshat 
+
+2. Write a program to divide the message into variable length frames and sort them and display the message at the receiving side. */
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -52,8 +51,8 @@ void sortFrames(frame f[MAX], int n)
 int main()
 {
     frame f[MAX];
-    int n = -1;    // no of frames
-    int fsize; // size of frame
+    int n = -1;     // no of frames
+    int fsize;      // size of frame
 
     char msg[MAX];
     int m = 0; // message iterator
@@ -70,7 +69,7 @@ int main()
         f[i].id = i;
 
         n++; // count number of frames
-        fsize = rand()%5+1; // Frame size in range [1,5]
+        fsize = rand()%5+1; // variable Frame size in range [1,5]
 
         for(j=0 ; j<fsize && m < strlen(msg); j++)
         {
@@ -114,20 +113,24 @@ Enter a message : hello beautiful world
 Shuffled frames:
 frame_id         frame_data
 ----------------------------
-0                hello
-1                 beau
-2                tiful
-3                 worl
-4                d
+6                ld
+1                lo be
+0                hel
+2                auti
+5                wor
+3                ful
+4
 
 Sorted frames:
 frame_id         frame_data
 ----------------------------
-0                hello
-1                 beau
-2                tiful
-3                 worl
-4                d
+0                hel
+1                lo be
+2                auti
+3                ful
+4
+5                wor
+6                ld
 
 final message : hello beautiful world
 ************************************************/

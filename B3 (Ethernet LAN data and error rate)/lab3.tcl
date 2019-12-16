@@ -1,4 +1,7 @@
+# Author : Akshat Agarwal
+
 # 3. Simulate an Ethernet LAN using n nodes (6-10), change error rate and data rate and compare the throughput.
+
 
 # Declare a new Simulator
 set ns [new Simulator]
@@ -107,10 +110,11 @@ $ns at 5.1 "finish"
 $ns run
 
 ######################### output-1 #####################
-# nplaba1@linux-HP-Pro-3090-MT:~/akshat$ ns lab3.tcl
+
 # Enter error rate (<1) : 
 # 0.4
 # Enter data rate (in Mbps) : 
 # 1000
 # Throughput : 593
+
 ########################################################

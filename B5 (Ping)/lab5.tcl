@@ -1,7 +1,7 @@
-##########################################################################################
-# Simulate the transmission of ping messages over a network topology consisting of 6 nodes
-# and find the number of packets dropped due to congestion.
-##########################################################################################
+# Author : Akshat Agarwal
+
+# 5. Simulate the transmission of ping messages over a network topology consisting of 6 nodes and find the number of packets dropped due to congestion.
+
 
 # Declare new Simulator
 set ns [new Simulator]
@@ -107,7 +107,7 @@ for {set i 0.1} {$i<2} {set i [expr $i+0.1]} {
 $ns at 5.0 "finish"
 $ns run
 
-####################### output #########################
+####################### output #####################
 # The node 0 recieved 2 with round trip time 1201.0
 # The node 0 recieved 2 with round trip time 1201.0
 # The node 0 recieved 2 with round trip time 1201.0
@@ -132,4 +132,4 @@ $ns run
 # The node 0 recieved 2 with round trip time 1201.0
 # The node 3 recieved 4 with round trip time 1201.0
 # No. of packet dropped : 5
-########################################################
+####################################################

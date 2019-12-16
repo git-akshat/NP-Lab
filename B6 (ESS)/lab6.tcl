@@ -1,7 +1,8 @@
+# Author : Akshat Agarwal
 ################################################################
 # 6. A Simple ESS with transmitting nodes in Wireless LAN
 # 7. A simple ad-hoc network with transmitting nodes
-#Note: This program is applicable for both 6th and 7th program
+#Note: This code is applicable for both 6th and 7th program
 ################################################################
 
 # Declare new Simulator
@@ -142,14 +143,14 @@ $ns at 150 "finish"
 $ns run
 
 ######################## output ###########################
-# akshat@pop-os:~/Desktop$ ns lab6.tcl 
-#
+
 # num_nodes is set 3
 # INITIALIZE THE LIST xListHead
 # channel.cc:sendUp - Calc highestAntennaZ_ and distCST_
 # highestAntennaZ_ = 1.5,  distCST_ = 550.0
 # SORTING LISTS ...DONE!
-# 
+#
 # Throughput from n0 to n1: 8438
 # Throughput from n1 to n2: 3000
+
 ############################################################

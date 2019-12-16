@@ -1,3 +1,5 @@
+# Author : Akshat Agarwal
+
 # 4. Simulate an Ethernet LAN using n nodes and set multiple traffic nodes and determine the collision across different nodes.
 
 
@@ -91,7 +93,8 @@ $ns at 0.1 "$ftp1 start"
 $ns at 5.0 "finish"
 $ns run
 
-####################### output #########################
-# nplaba1@linux-HP-Pro-3090-MT:~/akshat/B4 $ ns lab4.tcl
+############ output ############
+
 # No of packets collided: 242
-########################################################
+
+################################

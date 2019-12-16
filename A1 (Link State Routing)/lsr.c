@@ -1,8 +1,8 @@
-/***********************************************************
-* For the given network graph, write a program to implement
-* Link state routing algorithm
-* to build a routing table for the given node.
-************************************************************/
+/* Author : Gangadhar, Akshat 
+
+1. For the given network graph, write a program to 
+    * implement Link state routing algorithm
+    * build a routing table for the given node. */
 
 #include <stdio.h>
 #include <stdlib.h>
