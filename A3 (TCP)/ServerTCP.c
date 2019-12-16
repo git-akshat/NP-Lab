@@ -20,7 +20,7 @@ int main()
     /* sockfd = socket(domain, type, protocol) */ 
     sersock = socket(AF_INET, SOCK_STREAM, 0);
 
-    struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") }
+    struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") };
 
     /* attaching socket to port */
     bind(sersock, (struct sockaddr *) &addr, sizeof(addr));

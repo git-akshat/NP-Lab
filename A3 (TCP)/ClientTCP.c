@@ -20,7 +20,7 @@ int main()
     /* sockfd = socket(domain, type, protocol) */ 
     sock = socket(AF_INET, SOCK_STREAM, 0);
 
-    struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") }
+    struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") };
 
     /*  keep trying to esatablish connection with server */
     while(connect(sock, (struct sockaddr *) &addr, sizeof(addr))) ;
