@@ -52,7 +52,7 @@ void sortFrames(frame f[MAX], int n)
 int main()
 {
     frame f[MAX];
-    int n;    // no of frames
+    int n = -1;    // no of frames
     int fsize; // size of frame
 
     char msg[MAX];
@@ -63,21 +63,19 @@ int main()
     fgets(msg , MAX, stdin);
     msg[strlen(msg)-1] = '\0'; // to remove '\n' from string
 
-    printf("Enter size of the frame : ");
-    scanf("%d" , &fsize);
-
-    n = strlen(msg) / fsize ;   // find the number of frames
-
+    srand(time(NULL));
     // Divide the message into frames
-    for(i=0 ; msg[i] != '\0' ; i++)
+    for(i=0 ; m < strlen(msg) ; i++)
     {
         f[i].id = i;
 
-        for(j=0 ; j<fsize && m <= strlen(msg); j++)
+        n++; // count number of frames
+        fsize = rand()%5+1; // Frame size in range [1,5]
+
+        for(j=0 ; j<fsize && m < strlen(msg); j++)
         {
             f[i].data[j] = msg[m++];
         }
-
     }
 
     shuffleFrame(f, n);
@@ -111,28 +109,25 @@ int main()
 
 
 /**************** OUTPUT-1 ************************
-Enter a message : network programming lab
-Enter size of the frame : 4
+Enter a message : hello beautiful world
 
 Shuffled frames:
 frame_id         frame_data
 ----------------------------
-5                lab
-1                ork
-2                prog
-0                netw
-3                ramm
-4                ing
+0                hello
+1                 beau
+2                tiful
+3                 worl
+4                d
 
 Sorted frames:
 frame_id         frame_data
 ----------------------------
-0                netw
-1                ork
-2                prog
-3                ramm
-4                ing
-5                lab
+0                hello
+1                 beau
+2                tiful
+3                 worl
+4                d
 
-final message : network programming lab
+final message : hello beautiful world
 ************************************************/
