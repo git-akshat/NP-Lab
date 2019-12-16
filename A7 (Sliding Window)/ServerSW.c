@@ -86,6 +86,5 @@ int main()
 	fputs(res, stdout);
 
 	printf("\n\n");
-	close(sock);
-	close(sersock);
+	close(sock); close(sersock);
 }

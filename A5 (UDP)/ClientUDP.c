@@ -12,8 +12,7 @@
 #include <sys/socket.h> 
 #include <arpa/inet.h> 
 #include <netinet/in.h> 
-
-#define PORT 8080 
+ 
 #define MAX 1024 
 
 int main() 
@@ -29,7 +28,7 @@ int main()
 
 	// Filling server information 
 	servaddr.sin_family = AF_INET; 
-	servaddr.sin_port = htons(PORT); 
+	servaddr.sin_port = htons(1234); // htons(port)
 	servaddr.sin_addr.s_addr = INADDR_ANY; 
 	
 	connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr));

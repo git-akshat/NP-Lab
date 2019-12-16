@@ -1,9 +1,8 @@
 # Author : Akshat Agarwal
-################################################################
+
 # 6. A Simple ESS with transmitting nodes in Wireless LAN
 # 7. A simple ad-hoc network with transmitting nodes
-#Note: This code is applicable for both 6th and 7th program
-################################################################
+
 
 # Declare new Simulator
 set ns [new Simulator]
@@ -39,27 +38,26 @@ $ns node-config -adhocRouting DSDV \
 create-god 3
 
 ################### Decide the topology ###############
-#
-#      500
-#	|
-#       |
-#	|							
-#      400                          [sink2]
-#	|                            [n2]	
-#	|                           .'
-#	|                         .'
-#	|                      .'
-#	|                    .'
-#	|                  .'
-#	|               .'
-#      100          [n1]
-#	|         .'[sink1]	
-#	|       .'  [tcp1]
-#      10   [n0]    [ftp1]
-#	|  [tcp0]
-#	|  [ftp0]
-#	|
-#	|____10______100_______________400_________500
+#   500
+#   |
+#   |
+#   |							
+#   400                         [sink2]
+#   |                            [n2]	
+#   |                           .'
+#   |                         .'
+#   |                       .'
+#   |                     .'
+#   |                   .'
+#   |                 .'
+#   100            [n1]
+#   |          .' [sink1]	
+#   |        .'   [tcp1]
+#   10   [n0]     [ftp1]
+#   |  [tcp0]
+#   |  [ftp0]
+#   |
+#   |____10______100_______________400_________500
 
 # Create nodes
 set n0 [$ns node]

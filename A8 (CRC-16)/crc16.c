@@ -40,7 +40,6 @@ void crc(char *data, char *gen, char *rem)
 int main()
 {
     int i, j;
-
     char dword[MAX]; // dataword
     char augWord[MAX]; // augmented dataword
     char cword[MAX]; // codeword
@@ -104,7 +103,6 @@ Enter the data received : 111100011111111100111110
 Syndrome = 0000000000000000
 No Error. Data received successfully.
 *****************************************************/
-
 
 /*************** Output -2 *************************
 CRC-16 Generator : x^16 + x^12 + x^5 + 1

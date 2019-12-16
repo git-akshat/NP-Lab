@@ -22,15 +22,13 @@ int main()
     char msg[MAX], frame[MAX]; 
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
-
     struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") }
 
     /*  keep trying to establish connection with server */
     while(connect(sock, (struct sockaddr *) &addr, sizeof(addr))) ;
     printf("\nClient is connected to Server\n");
 
-    printf("\nEnter message to send : ");
-    scanf("%s", msg);
+    printf("\nEnter message to send : "); scanf("%s", msg);
 
     int i = 0;
     while(i<strlen(msg)) 
@@ -40,7 +38,6 @@ int main()
 
         // strncpy(destination , source , length)
         strncpy(frame, msg+i, sendsize); //copy msg to frame
-            
         if( sendsize > strlen(frame) )
         {
             sendsize = strlen(frame);
@@ -59,7 +56,5 @@ int main()
         i = ack; // next data seq no = incoming ack no
     }
     send(sock, "Exit", strlen("Exit"), 0); 
-
-    printf("\n\n");
-    close(sock);
+    close(sock); printf("\n\n");
 }

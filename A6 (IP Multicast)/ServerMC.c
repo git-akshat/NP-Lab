@@ -1,6 +1,6 @@
 /* Author : Akshat Agarwal
 
-6. Write a socket program to demonstrate ip multicasting which provides the capability for an application to send IP datagram that a group of hosts in anetwork can receive. */
+6. Write a socket program to demonstrate ip multicasting which provides the capability for an application to send IP datagram that a group of hosts in a network can receive. */
 
 /**** server sends the message ****/
 
