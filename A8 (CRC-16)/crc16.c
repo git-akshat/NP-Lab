@@ -30,7 +30,7 @@ void crc(char *data, char *gen, char *rem)
     }
 
     // size of output = strlen(gen)-1 = 16 bits 
-    int idx = strlen(out)- (strlen(gen)-1); // last 16 bits of out array
+    int idx = strlen(out)-strlen(gen)+1; // last 16 bits of out array
     for(i=0; i<strlen(gen)-1; i++)
     {
         rem[i] = out[idx+i]; // last 16 bits of out array
@@ -45,7 +45,7 @@ int main()
     char cword[MAX]; // codeword
     char rem[MAX]; // remainder from crc
     char recv[MAX]; // received message 
-    char gen[] = "10001000000100001";
+    char gen[MAX] = "10001000000100001";
 
     printf("\nCRC-16 Generator : x^16 + x^12 + x^5 + 1 ");
     printf("\nBinary Form      : %s", gen);
