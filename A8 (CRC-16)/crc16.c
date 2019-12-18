@@ -45,7 +45,7 @@ int main()
     char cword[MAX]; // codeword
     char rem[MAX]; // remainder from crc
     char recv[MAX]; // received message 
-    char gen[MAX] = "10001000000100001";
+    char gen[MAX] = "10001000000100001\0";
 
     printf("\nCRC-16 Generator : x^16 + x^12 + x^5 + 1 ");
     printf("\nBinary Form      : %s", gen);
