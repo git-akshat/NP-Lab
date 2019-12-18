@@ -14,13 +14,16 @@
 
 int main()
 {
-    int sersock, sock, fd, n;
+    int sersock, sock, fd, n, reuse = 1;
     char buffer[1024], fname[50];
     
     /* sockfd = socket(domain, type, protocol) */ 
     sersock = socket(AF_INET, SOCK_STREAM, 0);
 
     struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") };
+
+    // Forcefully connecting to same port everytime
+	setsockopt(sersock, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse));
 
     /* attaching socket to port */
     bind(sersock, (struct sockaddr *) &addr, sizeof(addr));

@@ -17,13 +17,15 @@
 
 int main() 
 { 
-	int len, n;
 	int sock; 
+	int len, n, reuse = 1;
 	char buffer[MAX], msg[MAX]; 
 	struct sockaddr_in servaddr, cliaddr; 
-	
-	// Creating socket file descriptor 
+	 
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
+
+	// Forcefully connecting to same port everytime
+	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse));
 	
 	// memset(void *address, int value, size_t length);
 	memset(&servaddr, 0, sizeof(servaddr)); 

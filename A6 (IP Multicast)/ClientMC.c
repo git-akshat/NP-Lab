@@ -15,18 +15,16 @@
 
 int main()
 {
-	int sock;
+	int sock, reuse = 1;
 	char msg[1024];
 	struct sockaddr_in addr;
 	struct ip_mreq group;
 
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
-
-	int reuse = 1;
+	
 	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse));
 	
 	memset(&addr, 0, sizeof(addr));
-
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(1234);
 	addr.sin_addr.s_addr = INADDR_ANY; // to listen on all available interfaces.

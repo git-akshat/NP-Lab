@@ -19,13 +19,17 @@
 
 int main() 
 { 
-	int sersock, sock; 
+	int sersock, sock, reuse=1; 
 	char frame[MAX];
 	char res[MAX]; // to store all bytes that are recieved successfully
 	int ack;
 
 	sersock = socket(AF_INET, SOCK_STREAM, 0);
+	
 	struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") };
+
+	// Forcefully connecting to same port everytime
+	setsockopt(sersock, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse));
 
 	bind(sersock, (struct sockaddr *) &addr, sizeof(addr));
 	printf("\nServer is Online");
