@@ -30,8 +30,7 @@ int main()
 	servaddr.sin_port = htons(1234); // htons(port)
 	servaddr.sin_addr.s_addr = INADDR_ANY; 
 	
-	while( connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0);
-	printf("\nConnection Established") ;
+	connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr));
 	
 	while(1)
 	{
