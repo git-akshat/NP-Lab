@@ -43,6 +43,5 @@ int main()
     
     close(req);
     close(res);
-    
     return 0;
 }

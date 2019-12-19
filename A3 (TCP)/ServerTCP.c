@@ -50,7 +50,7 @@ int main()
         }
     }
     printf("\nFile content sent\n");
+    
     close(fd);
-
     return 0;
 }

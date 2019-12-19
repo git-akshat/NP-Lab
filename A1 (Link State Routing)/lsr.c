@@ -34,7 +34,7 @@ void initialize()
     }
 }
 
-/* Get Minimum Node Not In Network */
+/* Get minimum distant node not already in network */
 int GetMin()
 {
     int minIdx = -1;

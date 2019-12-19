@@ -25,13 +25,13 @@ int main()
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 
 	memset(&servaddr, 0, sizeof(servaddr)); 
-
 	// Filling server information 
 	servaddr.sin_family = AF_INET; 
 	servaddr.sin_port = htons(1234); // htons(port)
 	servaddr.sin_addr.s_addr = INADDR_ANY; 
 	
-	connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr));
+	while( connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0);
+	printf("\nConnection Established") ;
 	
 	while(1)
 	{

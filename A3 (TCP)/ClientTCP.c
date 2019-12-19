@@ -17,9 +17,7 @@ int main()
     int sock, n;
     char buffer[1024], fname[50];
 
-    /* sockfd = socket(domain, type, protocol) */ 
     sock = socket(AF_INET, SOCK_STREAM, 0);
-
     struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") };
 
     /*  keep trying to esatablish connection with server */
@@ -37,11 +35,10 @@ int main()
     /*  keep printing any data received from the server */
     while ((n = recv(sock, buffer, sizeof(buffer), 0)) > 0)
     {
-	buffer[n] = '\0' ;
+        buffer[n] = '\0' ;
         printf("%s", buffer);
     }
-    
+
 	printf("---------------------------------------------------------\n");
-	
     return 0;
 }

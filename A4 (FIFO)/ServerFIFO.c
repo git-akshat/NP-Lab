@@ -8,9 +8,9 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include <fcntl.h> /*used for file handling*/
-#include <sys/stat.h> /*used for mkfifo function*/
-#include <sys/types.h> /*when compiled in gcc, mkfifo() has dependency on both types.h and stat.h*/
+#include <fcntl.h> // used for file handling
+#include <sys/stat.h> // used for mkfifo function
+#include <sys/types.h> // mkfifo() has dependency on both types.h and stat.h
 
 int main()
 {
