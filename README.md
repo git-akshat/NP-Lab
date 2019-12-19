@@ -58,5 +58,7 @@ The trace(.tr) file contains 12 fields as shown in below figure:
 ![trace-file-structure](https://github.com/git-akshat/NP-Lab/blob/master/others/trace-structure.png)
 
 
-###
-[**Download Manual**](https://github.com/git-akshat/NP-Lab/raw/master/NP_LAB_Manual.pdf)
+
+
+### 
+[**Download Manual**](https://github.com/git-akshat/NP-Lab/raw/master/NP_Lab_Manual.pdf)
