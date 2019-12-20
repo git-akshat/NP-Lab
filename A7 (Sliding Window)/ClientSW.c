@@ -48,7 +48,7 @@ int main()
         printf("\n end seqno   = %d", i+sendsize-1);
 
         send(sock, frame, strlen(frame), 0); 
-        printf("\nData sent. Waiting for ack...");
+        printf("\nFrame sent. Waiting for ack...");
 
         recv(sock, &ack, sendsize, 0); 
         printf("\nreceived ack no = %d ",ack);  

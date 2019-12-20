@@ -68,6 +68,7 @@ int main()
 			printf("\nError at byte   = %d", err_idx+1);
 			printf("\nReceiving window: ");
 			printf("\n start seqno = %d", k-err_idx);
+			printf("\n end seqno   = %d", k-1);
 		}
 		else
 		{ 
@@ -78,8 +79,8 @@ int main()
 			printf("\n\nPacket received = %s", frame);
 			printf("\nReceiving window: ");
 			printf("\n start seqno = %d", k-recvsize);
+			printf("\n end seqno   = %d", k-1);
 		}
-		printf("\n end seqno   = %d", k-1);
 		ack = k ;
 		printf("\nSending ack = %d", ack);
 		send(sock, &ack, sizeof(ack), 0) ;  
