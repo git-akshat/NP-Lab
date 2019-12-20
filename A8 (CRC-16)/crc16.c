@@ -35,6 +35,7 @@ void crc(char *data, char *gen, char *rem)
     {
         rem[i] = out[idx+i]; // last 16 bits of out array
     }
+    rem[16] = '\0';
 }
 
 int main()
