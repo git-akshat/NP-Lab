@@ -21,7 +21,7 @@ int main()
     struct sockaddr_in addr = { AF_INET, htons(1234), inet_addr("127.0.0.1") };
 
     /*  keep trying to esatablish connection with server */
-    while(connect(sock, (struct sockaddr *) &addr, sizeof(addr))) ;
+    while(connect(sock, (struct sockaddr *) &addr, sizeof(addr)) < 0) ;
     printf("\nClient is connected to Server");
 
     /* send the filename to the server */
