@@ -20,7 +20,7 @@ void shuffleFrame(frame f[MAX], int n)
     srand(time(NULL));
 
     int i;
-    for(i=n; i>=0; i--)
+    for(i=n-1; i>=0; i--)
     {
         int j = rand()%(i+1);
 
@@ -35,7 +35,7 @@ void sortFrames(frame f[MAX], int n)
 {
     int i, j;
 
-    for(i=1; i<=n; i++)
+    for(i=1; i<n; i++)
     {
         frame t = f[i];
         j = i-1;
@@ -51,7 +51,7 @@ void sortFrames(frame f[MAX], int n)
 int main()
 {
     frame f[MAX];
-    int n = -1;     // no of frames
+    int n = 0;     // no of frames
     int fsize;      // size of frame
 
     char msg[MAX];
@@ -82,7 +82,7 @@ int main()
     printf("\nShuffled frames:");
     printf("\nframe_id \t frame_data \n");
     printf("----------------------------\n");
-    for(i=0 ; i <= n; i++)
+    for(i=0 ; i < n; i++)
     {
         printf("%d \t\t %s \n", f[i].id, f[i].data);
     }
@@ -92,13 +92,13 @@ int main()
     printf("\nSorted frames:");
     printf("\nframe_id \t frame_data \n");
     printf("----------------------------\n");
-    for(i=0 ; i <= n; i++)
+    for(i=0 ; i < n; i++)
     {
         printf("%d \t\t %s \n", f[i].id, f[i].data);
     }
 
     printf("\nfinal message : ");
-    for(i=0; i<= n; i++)
+    for(i=0; i< n; i++)
     {
         printf("%s", f[i].data);
     }
@@ -111,26 +111,24 @@ int main()
 Enter a message : hello beautiful world
 
 Shuffled frames:
-frame_id         frame_data
+frame_id 	 frame_data 
 ----------------------------
-6                ld
-1                lo be
-0                hel
-2                auti
-5                wor
-3                ful
-4
+0 		 hello 
+3 		 u 
+1 		  beau 
+2 		 tif 
+5 		 ld 
+4 		 l wor 
 
 Sorted frames:
-frame_id         frame_data
+frame_id 	 frame_data 
 ----------------------------
-0                hel
-1                lo be
-2                auti
-3                ful
-4
-5                wor
-6                ld
+0 		 hello 
+1 		  beau 
+2 		 tif 
+3 		 u 
+4 		 l wor 
+5 		 ld 
 
 final message : hello beautiful world
 ************************************************/
