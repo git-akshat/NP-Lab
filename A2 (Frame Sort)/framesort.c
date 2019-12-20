@@ -17,8 +17,6 @@ typedef struct{
 // Fisher yates algorithm to shuffle the frame
 void shuffleFrame(frame f[MAX], int n)
 {
-    srand(time(NULL));
-
     int i;
     for(i=n-1; i>=0; i--)
     {
@@ -34,7 +32,6 @@ void shuffleFrame(frame f[MAX], int n)
 void sortFrames(frame f[MAX], int n)
 {
     int i, j;
-
     for(i=1; i<n; i++)
     {
         frame t = f[i];
@@ -42,7 +39,7 @@ void sortFrames(frame f[MAX], int n)
         while(j>=0 && f[j].id > t.id)
         {
             f[j+1] = f[j];
-            j=j-1;
+            j = j-1;
         }
         f[j+1] = t;
     }
@@ -67,10 +64,9 @@ int main()
     for(i=0 ; m < strlen(msg) ; i++)
     {
         f[i].id = i;
-
-        n++; // count number of frames
         fsize = rand()%5+1; // variable Frame size in range [1,5]
-
+        n++;                // count number of frames
+        
         for(j=0 ; j<fsize && m < strlen(msg); j++)
         {
             f[i].data[j] = msg[m++];
