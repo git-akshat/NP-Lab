@@ -16,13 +16,12 @@
 #define MAX 1024 
 
 int main() 
-{ 
-	int n, len, sock;
+{
 	char buffer[MAX], msg[MAX]; 
 	struct sockaddr_in servaddr; 
 
 	// Creating socket file descriptor 
-	sock = socket(AF_INET, SOCK_DGRAM, 0);
+	int sock = socket(AF_INET, SOCK_DGRAM, 0);
 
 	memset(&servaddr, 0, sizeof(servaddr)); 
 	// Filling server information 
@@ -38,7 +37,7 @@ int main()
 		fgets(msg, MAX, stdin); 
 		sendto(sock, (const char *)msg, strlen(msg), 0, (const struct sockaddr *) &servaddr, sizeof(servaddr));
 			
-		n = recvfrom(sock, (char *)buffer, sizeof(buffer), 0, NULL, NULL); 
+		int n = recvfrom(sock, (char *)buffer, sizeof(buffer), 0, NULL, NULL); 
 		buffer[n] = '\0'; 
 		printf("Server : %s", buffer); 
 	}

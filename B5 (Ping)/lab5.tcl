@@ -43,16 +43,10 @@ set n6 [$ns node]
 # set up links
 $ns duplex-link $n0 $n2 100Mb 300ms DropTail
 $ns duplex-link $n5 $n2 100Mb 300ms DropTail
-$ns duplex-link $n1 $n2 1Mb 300ms DropTail
-$ns duplex-link $n3 $n2 1Mb 300ms DropTail
-$ns duplex-link $n2 $n4 1Mb 300ms DropTail
-$ns duplex-link $n2 $n6 1Mb 300ms DropTail
-
-# set up queue size
-$ns queue-limit $n0 $n2 5
-$ns queue-limit $n5 $n2 5
-$ns queue-limit $n2 $n4 3
-$ns queue-limit $n2 $n6 2
+$ns duplex-link $n1 $n2 100Mb 300ms DropTail
+$ns duplex-link $n3 $n2 100Mb 300ms DropTail
+$ns duplex-link $n2 $n4 100Mb 300ms DropTail
+$ns duplex-link $n2 $n6 100Mb 300ms DropTail
 
 # Declare the agents/protocols
 set ping0 [new Agent/Ping]
@@ -95,8 +89,9 @@ proc finish { } {
 	exit 0
 }
 
-$ns rtmodel-at 0.9 down $n2 $n6
-$ns rtmodel-at 1.9 up $n2 $n6
+# shut down link between n2 and n6 for 1 sec(2 - 1 = 1) to show packet dropping
+$ns rtmodel-at 1 down $n2 $n6
+$ns rtmodel-at 2 up $n2 $n6
 
 # schedule events
 for {set i 0.1} {$i<2} {set i [expr $i+0.1]} {

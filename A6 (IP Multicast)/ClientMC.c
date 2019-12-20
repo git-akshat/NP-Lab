@@ -29,18 +29,14 @@ int main()
 	addr.sin_port = htons(1234);
 	addr.sin_addr.s_addr = INADDR_ANY; // to listen on all available interfaces.
 
-	if(bind(sock, (struct sockaddr*)&addr, sizeof(addr)) < 0)
-	{
-		printf("Binding failed");
-		close(sock);
-		exit(1);
-	}
+	bind(sock, (struct sockaddr*)&addr, sizeof(addr));
 
 	group.imr_multiaddr.s_addr = inet_addr("226.1.1.1");
 	group.imr_interface.s_addr = inet_addr("127.0.0.1");
 	setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&group, sizeof(group));
 	printf("Waiting for message from server.....");
 
+	// recvfrom(sock, msg, sizeof(msg), 0, NULL, NULL);
 	read(sock, msg, sizeof(msg));
 	printf("\nThe message from multicast server is : %s \n", msg);
 

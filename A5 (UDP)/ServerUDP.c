@@ -17,20 +17,19 @@
 
 int main() 
 { 
-	int sock; 
-	int len, n, reuse = 1;
 	char buffer[MAX], msg[MAX]; 
 	struct sockaddr_in servaddr, cliaddr; 
 	 
-	sock = socket(AF_INET, SOCK_DGRAM, 0);
+	int sock = socket(AF_INET, SOCK_DGRAM, 0);
 
 	// Forcefully connecting to same port everytime
+	int reuse = 1;
 	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&reuse, sizeof(reuse));
 	
-	// memset(void *address, int value, size_t length);
+	// Initialize servaddr and cliaddr with zero
 	memset(&servaddr, 0, sizeof(servaddr)); 
 	memset(&cliaddr, 0, sizeof(cliaddr)); 
-	len = sizeof(cliaddr);
+	int len = sizeof(cliaddr);
 	
 	// Filling server information 
 	servaddr.sin_family = AF_INET; // IPv4 
@@ -43,7 +42,7 @@ int main()
 	 
 	while(1)
 	{
-		n = recvfrom(sock, (char *)buffer, sizeof(buffer), 0, ( struct sockaddr *) &cliaddr, &len); 
+		int n = recvfrom(sock, (char *)buffer, sizeof(buffer), 0, ( struct sockaddr *) &cliaddr, &len); 
 		buffer[n] = '\0'; 
 		printf("Client : %s", buffer); 
 		
