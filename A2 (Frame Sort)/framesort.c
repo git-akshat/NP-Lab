@@ -67,10 +67,8 @@ int main()
         fsize = rand()%5+1; // variable Frame size in range [1,5]
         n++;                // count number of frames
         
-        for(j=0 ; j<fsize && m < strlen(msg); j++)
-        {
-            f[i].data[j] = msg[m++];
-        }
+        strncpy(f[i].data , msg+m , fsize) ;
+        m = m+fsize ;
     }
 
     shuffleFrame(f, n);
