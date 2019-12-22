@@ -15,7 +15,7 @@ typedef struct{
 }frame;
 
 // Fisher yates algorithm to shuffle the frame
-void shuffleFrame(frame f[MAX], int n)
+void shuffleFrames(frame f[MAX], int n)
 {
     int i;
     for(i=n-1; i>=0; i--)
@@ -45,6 +45,15 @@ void sortFrames(frame f[MAX], int n)
     }
 }
 
+void showFrames(frame f[MAX] , int n ){
+    printf("\nframe_id \t frame_data \n");
+    printf("----------------------------\n");
+    for(i=0 ; i < n; i++)
+    {
+        printf("%d \t\t %s \n", f[i].id, f[i].data);
+    }
+}
+
 int main()
 {
     frame f[MAX];
@@ -71,26 +80,14 @@ int main()
         m = m+fsize ;
     }
 
-    shuffleFrame(f, n);
-
+    shuffleFrames(f, n);
     printf("\nShuffled frames:");
-    printf("\nframe_id \t frame_data \n");
-    printf("----------------------------\n");
-    for(i=0 ; i < n; i++)
-    {
-        printf("%d \t\t %s \n", f[i].id, f[i].data);
-    }
-
+    showFrames(f,n);
+    
     sortFrames(f, n);
-
     printf("\nSorted frames:");
-    printf("\nframe_id \t frame_data \n");
-    printf("----------------------------\n");
-    for(i=0 ; i < n; i++)
-    {
-        printf("%d \t\t %s \n", f[i].id, f[i].data);
-    }
-
+    showFrames(f,n);
+    
     printf("\nfinal message : ");
     for(i=0; i< n; i++)
     {
