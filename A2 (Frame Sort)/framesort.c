@@ -1,4 +1,4 @@
-/* Author : Gangadhar, Akshat 
+/* Author : Gangadhar, Akshat, Natesh
 
 2. Write a program to divide the message into variable length frames and sort them and display the message at the receiving side. */
 
@@ -93,7 +93,6 @@ int main()
     {
         printf("%s", f[i].data);
     }
-
     printf("\n");
 }
 
