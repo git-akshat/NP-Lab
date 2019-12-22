@@ -11,31 +11,24 @@
 /* crc(dividend , divisor, remainder) */
 void crc(char *data, char *gen, char *rem)
 {
-    int i, j, k=0;
+    int i, j, lengthDiff = strlen(data)-strlen(gen) ; 
     char out[MAX]; // xored val after each step
 
     strcpy(out, data);
 
     /* Perform XOR on the msg */
-    for(i=0; i<strlen(data)-strlen(gen)+1; i++)
+    for(i=0; i<lengthDiff +1 ; i++)
     {
-        if(out[i] == '1')
-        {
-            out[i] = '0' ; 
-            for(j=1; j<strlen(gen); j++)
-            {
-                out[i+j] = (out[i+j] == gen[j]) ? '0' : '1';
-            }
+        if(out[i]=='0') continue ; 
+        out[i] = '0' ;
+        for(int j = 1 ; j<strlen(gen) ; j++){
+            out[i+j] = (gen[j]==out[i+j] ?'0':'1') ; 
         }
     }
 
     // size of output = strlen(gen)-1 = 16 bits 
-    int idx = strlen(out)-strlen(gen)+1; // last 16 bits of out array
-    for(i=0; i<strlen(gen)-1; i++)
-    {
-        rem[i] = out[idx+i]; // last 16 bits of out array
-    }
-    rem[16] = '\0';
+    strncpy(rem , out+lengthDiff+1 , strlen(gen)-1);
+    rem[strlen(gen)-1] = '\0' ;
 }
 
 int main()
@@ -78,13 +71,11 @@ int main()
     crc(recv, gen, rem);
 
     printf("\nSyndrome = %s ", rem);
-    for(i=0; i<strlen(rem); i++)
-    {
-        if(rem[i] == '1')
-        {
-            printf("\nError occured !!! Corrupted data received. \n");
-            exit(0);
-        }
+    
+    if(strstr( rem , "1")!=0)
+   {
+        printf("\nError occured !!! Corrupted data received. \n");
+        exit(0);
     }
     printf("\nNo Error. Data received successfully.\n");
 }
