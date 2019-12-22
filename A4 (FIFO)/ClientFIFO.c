@@ -37,6 +37,7 @@ int main()
     printf("-------------------------------------------\n");
     while((n = read(res, buffer, sizeof(buffer)))>0)
     {
+        buffer[n]= '\0' ; 
         printf("%s", buffer);
     }
     printf("-------------------------------------------\n");
