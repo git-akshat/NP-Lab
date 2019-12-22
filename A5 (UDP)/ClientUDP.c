@@ -29,8 +29,6 @@ int main()
 	servaddr.sin_port = htons(1234); // htons(port)
 	servaddr.sin_addr.s_addr = INADDR_ANY; 
 	
-	connect(sock, (struct sockaddr *)&servaddr, sizeof(servaddr));
-	
 	while(1)
 	{
 		printf("Client : ");
