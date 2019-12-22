@@ -59,11 +59,9 @@ int main()
 			printf("\nError occured at = %d", err_idx+1);
 		}
 
-		int j;
-		for(j=0; j<recvsize ; j++)
-		{
-			res[k++] = frame[j];
-		}
+		strncpy(res+k , frame , recvsize);
+        	k+=recvsize ;
+		
 		printf("\nPacket received  = %s", frame);
 		printf("\nReceiving window: ");
 		printf("\n start seqno = %d", k-recvsize);
