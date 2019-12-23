@@ -82,6 +82,10 @@ $ns at 0.0 "$n0 setdest 10 10 15"
 $ns at 0.0 "$n1 setdest 100 100 15"
 $ns at 0.0 "$n2 setdest 400 400 15"
 
+# move n1 near to node n2 at 50s and come back near to node n0 at 100s
+$ns at 50 "$n1 setdest 300 300 15"
+$ns at 100 "$n1 setdest 100 100 15"
+
 # Declare and attach transport layer protocol
 set tcp0 [new Agent/TCP]
 set tcp1 [new Agent/TCP]
@@ -129,10 +133,6 @@ proc finish { } {
 }
 
 # schedule events
-
-# move n1 near to node n2 at 50s and come back near to node n0 at 100s
-$ns at 50 "$n1 setdest 300 300 15"
-$ns at 100 "$n1 setdest 100 100 15"
 
 # start ftp traffic
 $ns at 1 "$ftp0 start"
